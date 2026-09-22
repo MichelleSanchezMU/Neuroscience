@@ -849,24 +849,7 @@ function mergeState(o){
   ["plan","seen","missed"].forEach(function(k){ if(o[k]&&typeof o[k]==="object") S[k]=o[k]; });
 }
 
-(function boot(){
-  var local=loadLocal(); if(local) mergeState(local);
-  render();
-  if(window.claude&&window.claude.use){
-    window.claude.use("db").then(function(db){
-      if(!db) return;
-      DB=db;
-      return db.doc("progress/main").get().then(function(snap){
-        if(snap&&snap.exists){
-          var d=snap.data();
-          if(d&&typeof d.state==="string"){
-            try{ mergeState(JSON.parse(d.state)); render(); }catch(e){}
-          }
-        }
-      });
-    }).catch(function(){});
-  }
-})();
+/* startup moved to the end of the script — VIEWS/view must be assigned first */
 
 /* ===================== VIEWS ===================== */
 var VIEWS=[
@@ -1263,4 +1246,24 @@ function renderMain(){
   }
 }
 function render(){ renderNav(); renderMain(); }
+
+/* ---------- startup: everything above is now defined ---------- */
+(function boot(){
+  var local=loadLocal(); if(local) mergeState(local);
+  render();
+  if(window.claude&&window.claude.use){
+    window.claude.use("db").then(function(db){
+      if(!db) return;
+      DB=db;
+      return db.doc("progress/main").get().then(function(snap){
+        if(snap&&snap.exists){
+          var d=snap.data();
+          if(d&&typeof d.state==="string"){
+            try{ mergeState(JSON.parse(d.state)); render(); }catch(e){}
+          }
+        }
+      });
+    }).catch(function(){});
+  }
+})();
 </script>
