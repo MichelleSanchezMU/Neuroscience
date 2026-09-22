@@ -1,0 +1,13 @@
+# Verbatim textbook extracts and figure images — copyrighted, working files only
+working/
+
+# Large binary course material (originals live in Downloads)
+source-material/*.pptx
+source-material/*.pdf
+
+# Python
+venv/
+__pycache__/
+
+# macOS
+.DS_Store

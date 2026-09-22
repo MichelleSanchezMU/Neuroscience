@@ -1,0 +1,1266 @@
+<title>Soma to Cortex</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+
+<style>
+:root{
+  --paper:#F2F4F5;
+  --surface:#FFFFFF;
+  --surface-2:#E9ECEE;
+  --ink:#16191E;
+  --ink-2:#414952;
+  --muted:#6A7480;
+  --line:#D6DBDF;
+  --line-2:#C2C9CF;
+  --accent:#12626D;
+  --accent-soft:#DCEBED;
+  --excite:#A83F1C;
+  --excite-soft:#F6E4DC;
+  --inhibit:#2C568A;
+  --inhibit-soft:#DFE7F2;
+  --good:#2F6B44;
+  --good-soft:#DCEDE1;
+  --warn:#8A6410;
+  --warn-soft:#F5EAD1;
+  --shadow:0 1px 2px rgba(16,24,32,.06),0 4px 16px rgba(16,24,32,.05);
+  --r:10px;
+  --serif:"Spectral",Georgia,"Times New Roman",serif;
+  --sans:"Source Sans 3",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#111418;
+    --surface:#191D23;
+    --surface-2:#22272E;
+    --ink:#E4E7EA;
+    --ink-2:#B3BAC2;
+    --muted:#8A939D;
+    --line:#2C323A;
+    --line-2:#3B434C;
+    --accent:#4FAEBB;
+    --accent-soft:#16333A;
+    --excite:#E0855F;
+    --excite-soft:#3A241B;
+    --inhibit:#7FA6D6;
+    --inhibit-soft:#1C2836;
+    --good:#7CC094;
+    --good-soft:#1B2C21;
+    --warn:#D6AE5C;
+    --warn-soft:#2E2718;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 4px 16px rgba(0,0,0,.3);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#111418;
+  --surface:#191D23;
+  --surface-2:#22272E;
+  --ink:#E4E7EA;
+  --ink-2:#B3BAC2;
+  --muted:#8A939D;
+  --line:#2C323A;
+  --line-2:#3B434C;
+  --accent:#4FAEBB;
+  --accent-soft:#16333A;
+  --excite:#E0855F;
+  --excite-soft:#3A241B;
+  --inhibit:#7FA6D6;
+  --inhibit-soft:#1C2836;
+  --good:#7CC094;
+  --good-soft:#1B2C21;
+  --warn:#D6AE5C;
+  --warn-soft:#2E2718;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 4px 16px rgba(0,0,0,.3);
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:var(--sans);font-size:16px;line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:600;text-wrap:balance;margin:0;line-height:1.25}
+p{margin:0}
+button{font:inherit;color:inherit;cursor:pointer}
+a{color:var(--accent)}
+
+/* ---------- shell ---------- */
+.shell{display:grid;grid-template-columns:238px minmax(0,1fr);min-height:100%}
+.rail{
+  background:var(--surface);border-right:1px solid var(--line);
+  padding-block:22px 28px;padding-inline:16px;
+  position:sticky;top:env(safe-area-inset-top,0px);align-self:start;
+  max-height:100vh;overflow-y:auto;
+}
+.brandmark{display:flex;align-items:baseline;gap:8px;margin-bottom:4px}
+.brandmark h1{font-size:19px;letter-spacing:-.01em}
+.brandsub{
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:18px;line-height:1.5;
+}
+.countdown{
+  border:1px solid var(--line);border-radius:var(--r);padding:10px 12px;margin-bottom:18px;
+  background:var(--surface-2);
+}
+.countdown .n{font-family:var(--mono);font-size:26px;font-weight:600;line-height:1;color:var(--excite);font-variant-numeric:tabular-nums}
+.countdown .l{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:5px}
+nav{display:flex;flex-direction:column;gap:2px}
+.navbtn{
+  display:flex;align-items:center;justify-content:space-between;gap:8px;
+  background:none;border:0;border-radius:7px;padding:7px 10px;text-align:left;
+  color:var(--ink-2);font-size:14.5px;
+}
+.navbtn:hover{background:var(--surface-2)}
+.navbtn[aria-current="true"]{background:var(--accent-soft);color:var(--accent);font-weight:600}
+.navbtn .tick{font-family:var(--mono);font-size:11px;color:var(--muted);font-variant-numeric:tabular-nums}
+.navgroup{font-family:var(--mono);font-size:10px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin:16px 0 6px 10px}
+
+main{min-width:0;padding-block:28px 72px;padding-inline:clamp(16px,3.4vw,44px)}
+.wrap{max-width:820px}
+.wrap.wide{max-width:1040px}
+
+.pagehead{margin-bottom:22px;padding-bottom:16px;border-bottom:2px solid var(--line-2)}
+.pagehead h2{font-size:clamp(25px,3.4vw,33px);letter-spacing:-.015em}
+.pagehead .kicker{
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:7px;
+}
+.pagehead .lede{color:var(--ink-2);margin-top:9px;max-width:66ch}
+
+/* ---------- outline ---------- */
+.sec{margin-bottom:34px}
+.sec > h3{
+  font-size:19px;padding-bottom:7px;margin-bottom:14px;
+  border-bottom:1px solid var(--line);display:flex;align-items:baseline;gap:9px;flex-wrap:wrap;
+}
+.sec > h3 .src{font-family:var(--mono);font-size:10.5px;letter-spacing:.05em;color:var(--muted);font-weight:400}
+ol.out,ul.out{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:7px}
+ol.out ol.out,ol.out ul.out{margin-top:7px;padding-left:17px;border-left:1px solid var(--line);gap:6px}
+li.row{display:block}
+.lbl{font-family:var(--mono);font-size:11.5px;color:var(--muted);margin-right:7px;font-weight:500}
+.tm{font-weight:600;color:var(--ink)}
+.df{color:var(--ink-2)}
+.given{color:var(--muted)}
+li.row.filled > .df::before{content:"";display:inline-block}
+
+.chip{
+  display:inline-block;font-family:var(--mono);font-size:10px;letter-spacing:.05em;
+  padding:1px 6px;border-radius:4px;vertical-align:1px;margin-left:6px;white-space:nowrap;
+}
+.chip.ref{background:var(--surface-2);color:var(--muted)}
+.chip.flagged{background:var(--warn-soft);color:var(--warn);cursor:help}
+.chip.prof{background:var(--accent-soft);color:var(--accent)}
+
+.callout{
+  border:1px solid var(--line);border-left:3px solid var(--warn);border-radius:0 var(--r) var(--r) 0;
+  background:var(--surface);padding:12px 15px;margin:14px 0;font-size:14.5px;color:var(--ink-2);
+}
+.callout strong{color:var(--ink)}
+.callout.acc{border-left-color:var(--accent)}
+.callout.exc{border-left-color:var(--excite)}
+.callout h4{font-size:15px;margin-bottom:5px;font-family:var(--sans);font-weight:700;color:var(--ink)}
+
+/* ---------- tables ---------- */
+.tscroll{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r);background:var(--surface);margin:14px 0}
+table{border-collapse:collapse;width:100%;font-size:14.5px;min-width:440px}
+caption{
+  text-align:left;padding:11px 14px 0;font-family:var(--mono);font-size:10.5px;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--muted);
+}
+th,td{text-align:left;padding:8px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+thead th{
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--muted);font-weight:500;border-bottom:1px solid var(--line-2);
+}
+tbody tr:last-child td{border-bottom:0}
+td.k{font-weight:600;white-space:nowrap}
+tr.grp td{background:var(--surface-2);font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+
+/* ---------- confusions ---------- */
+.conf{border:1px solid var(--line);border-radius:var(--r);background:var(--surface);margin-bottom:16px;overflow:hidden}
+.conf > header{padding:12px 16px;border-bottom:1px solid var(--line);display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.conf > header h3{font-size:16.5px}
+.conf > header .why{font-size:13.5px;color:var(--muted)}
+.split{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr))}
+.side{padding:13px 16px;border-right:1px solid var(--line)}
+.side:last-child{border-right:0}
+.side h4{font-family:var(--mono);font-size:12px;letter-spacing:.04em;margin-bottom:7px}
+.side.e h4{color:var(--excite)}
+.side.i h4{color:var(--inhibit)}
+.side.n h4{color:var(--accent)}
+.side ul{margin:0;padding-left:16px;font-size:14px;color:var(--ink-2);display:flex;flex-direction:column;gap:4px}
+.tell{padding:10px 16px;background:var(--surface-2);font-size:14px;border-top:1px solid var(--line)}
+.tell b{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:2px}
+
+/* ---------- plan ---------- */
+.planbar{display:flex;align-items:center;gap:12px;margin-bottom:18px;flex-wrap:wrap}
+.meter{flex:1;min-width:160px;height:7px;background:var(--surface-2);border-radius:99px;overflow:hidden}
+.meter > i{display:block;height:100%;background:var(--accent);border-radius:99px;transition:width .3s}
+.day{
+  display:grid;grid-template-columns:auto 76px minmax(0,1fr);gap:13px;align-items:start;
+  padding:12px 14px;border:1px solid var(--line);border-radius:var(--r);background:var(--surface);margin-bottom:7px;
+}
+.day.today{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent-soft)}
+.day.done{opacity:.58}
+.day.done .task{text-decoration:line-through;text-decoration-color:var(--line-2)}
+.day input[type=checkbox]{width:17px;height:17px;margin-top:3px;accent-color:var(--accent);cursor:pointer}
+.dt{font-family:var(--mono);font-size:11.5px;color:var(--muted);line-height:1.45;padding-top:2px}
+.dt b{display:block;color:var(--ink-2);font-size:12.5px;font-weight:600}
+.task{font-size:14.5px}
+.task b{display:block;margin-bottom:2px}
+.task span{color:var(--muted);font-size:13.5px}
+.day.exam{background:var(--excite-soft);border-color:var(--excite)}
+.day.exam .task b{color:var(--excite)}
+
+/* ---------- drill ---------- */
+.modes{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:16px}
+.mode{
+  border:1px solid var(--line-2);background:var(--surface);border-radius:99px;padding:6px 14px;font-size:13.5px;
+}
+.mode[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.pool{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:18px;align-items:center}
+.pool label{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+select{
+  font:inherit;font-size:14px;padding:5px 9px;border:1px solid var(--line-2);border-radius:7px;
+  background:var(--surface);color:var(--ink);
+}
+.card{border:1px solid var(--line);border-radius:var(--r);background:var(--surface);padding:20px;box-shadow:var(--shadow)}
+.prompt{font-size:17px;line-height:1.5;margin-bottom:17px}
+.prompt .q{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:7px}
+.opts{display:flex;flex-direction:column;gap:7px}
+.opt{
+  text-align:left;border:1px solid var(--line-2);background:var(--surface);border-radius:8px;padding:10px 13px;font-size:15px;
+}
+.opt:hover:not(:disabled){border-color:var(--accent);background:var(--accent-soft)}
+.opt:disabled{cursor:default}
+.opt.right{border-color:var(--good);background:var(--good-soft);color:var(--good);font-weight:600}
+.opt.wrong{border-color:var(--excite);background:var(--excite-soft);color:var(--excite)}
+.fib{display:flex;gap:8px;flex-wrap:wrap}
+.fib input{
+  flex:1;min-width:190px;font:inherit;font-size:16px;padding:9px 13px;
+  border:1px solid var(--line-2);border-radius:8px;background:var(--surface);color:var(--ink);
+}
+.fib input:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.btn{border:1px solid var(--ink);background:var(--ink);color:var(--paper);border-radius:8px;padding:9px 17px;font-size:14.5px;font-weight:600}
+.btn.ghost{background:none;color:var(--ink);border-color:var(--line-2);font-weight:400}
+.verdict{margin-top:15px;padding:12px 14px;border-radius:8px;font-size:14.5px}
+.verdict.ok{background:var(--good-soft);color:var(--good)}
+.verdict.no{background:var(--excite-soft);color:var(--excite)}
+.verdict .ans{display:block;margin-top:5px;color:var(--ink-2)}
+.scoreline{display:flex;gap:18px;margin-top:16px;font-family:var(--mono);font-size:12px;color:var(--muted);flex-wrap:wrap}
+.scoreline b{color:var(--ink);font-variant-numeric:tabular-nums}
+
+.match{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:9px}
+.mcol{display:flex;flex-direction:column;gap:6px}
+.mitem{text-align:left;border:1px solid var(--line-2);background:var(--surface);border-radius:8px;padding:9px 12px;font-size:14.5px}
+.mitem.sel{border-color:var(--accent);background:var(--accent-soft)}
+.mitem.done{border-color:var(--good);background:var(--good-soft);color:var(--good);cursor:default}
+.mitem.miss{border-color:var(--excite);background:var(--excite-soft)}
+.mitem:disabled{cursor:default}
+
+.weak{display:flex;flex-direction:column;gap:6px}
+.weakrow{display:flex;align-items:center;gap:11px;padding:9px 13px;border:1px solid var(--line);border-radius:8px;background:var(--surface)}
+.weakrow .bar{flex:1;height:5px;background:var(--surface-2);border-radius:99px;overflow:hidden}
+.weakrow .bar > i{display:block;height:100%;background:var(--excite)}
+.weakrow .t{font-weight:600;font-size:14.5px;min-width:0}
+.weakrow .c{font-family:var(--mono);font-size:11.5px;color:var(--excite);font-variant-numeric:tabular-nums}
+
+.empty{padding:26px;text-align:center;color:var(--muted);border:1px dashed var(--line-2);border-radius:var(--r);font-size:14.5px}
+.savenote{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;color:var(--muted);margin-top:22px}
+
+.fixrow{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;margin-bottom:9px;background:var(--surface)}
+.fixrow > div{padding:11px 14px}
+.fixrow > div:first-child{border-right:1px solid var(--line);background:var(--excite-soft)}
+.fixrow .h{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:3px}
+.fixrow .v{font-size:14.5px}
+
+@media (max-width:860px){
+  .shell{grid-template-columns:1fr}
+  .rail{
+    position:sticky;top:0;z-index:20;max-height:none;overflow:visible;
+    border-right:0;border-bottom:1px solid var(--line);
+    padding-block:calc(10px + env(safe-area-inset-top,0px)) 10px;padding-inline:16px;
+  }
+  .countdown{display:flex;align-items:baseline;gap:9px;margin-bottom:11px;padding:7px 11px}
+  .countdown .n{font-size:19px}
+  .countdown .l{margin-top:0}
+  nav{flex-direction:row;overflow-x:auto;gap:5px;padding-bottom:3px}
+  .navbtn{white-space:nowrap;padding:6px 11px;font-size:13.5px}
+  .navgroup{display:none}
+  .brandsub{margin-bottom:11px}
+  .fixrow{grid-template-columns:1fr}
+  .fixrow > div:first-child{border-right:0;border-bottom:1px solid var(--line)}
+  .day{grid-template-columns:auto 62px minmax(0,1fr);gap:10px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+</style>
+
+<div class="shell">
+  <aside class="rail">
+    <div class="brandmark"><h1>Soma to Cortex</h1></div>
+    <div class="brandsub">Garrett &amp; Hough 7e · Ch 2–3</div>
+    <div class="countdown"><div class="n" id="cd">–</div><div class="l" id="cdl">to the exam</div></div>
+    <nav id="nav"></nav>
+  </aside>
+  <main id="main"></main>
+</div>
+
+<script>
+"use strict";
+
+/* =========================================================================
+   TERM BANK — one source for the notes, the drills and the weak-spot list.
+   tier 1 = appears in the professor's outline. tier 2 = textbook Key Terms
+   only (mostly the "read on your own" sections).
+   ========================================================================= */
+const T = [
+/* ---- Ch2 · cells ---- */
+["neuron-motor","Motor neuron","A neuron that carries commands to the muscles and organs. Multipolar; soma in the central nervous system.",2,"Cells",1],
+["neuron-sensory","Sensory neuron","A neuron that carries information from the body and from the outside world into the central nervous system.",2,"Cells",1],
+["neuron-unipolar","Unipolar sensory neuron","A sensory neuron with a single short stalk from the cell body that divides into two branches. Found in the peripheral nervous system and cranial nerves.",2,"Cells",1],
+["neuron-bipolar","Bipolar sensory neuron","A sensory neuron whose axon and dendritic processes are on opposite sides of the cell body. Peripheral nervous system.",2,"Cells",1],
+["neuron-inter","Interneuron","A neuron that has a short axon or no axon at all and connects one neuron to another in the same part of the central nervous system.",2,"Cells",1],
+["soma","Cell body (soma)","The largest part of a neuron, which contains the cell's nucleus, cytoplasm, and structures that produce proteins, convert nutrients into energy, and eliminate waste materials.",2,"Cells",1],
+["dendrite","Dendrites","Extensions that branch out from the cell body to receive information from other neurons.",2,"Cells",1],
+["axon","Axon","An extension from a neuron's cell body that carries information to other locations.",2,"Cells",1],
+["afferent","Afferent axon","An axon carrying information toward a structure — in the periphery, sensory input travelling into the central nervous system.",2,"Cells",1,null,"Neither “afferent” nor “efferent” appears anywhere in your 6e chapters 2 or 3. Both are in your outline and on Ch3 slide 26, so they are 7e or your professor's vocabulary."],
+["efferent","Efferent axon","An axon carrying information away from a structure — motor commands travelling out of the central nervous system to muscles and glands.",2,"Cells",1,null,"Same edition note as afferent: your 6e does not use the term."],
+["myelin","Myelin sheath","A fatty tissue that wraps around an axon to insulate it from the surrounding fluid and from other neurons.",2,"Cells",1],
+["terminal","Axon terminal (terminal button)","A swelling on the branches at the end of a neuron that contains neurotransmitters; also called an end bulb.",2,"Cells",1],
+["membrane","Cell membrane","The neuron's outer boundary — about 4 nanometers thick and made up of lipid (fat) and protein. Each lipid molecule orients its head toward the extracellular and intracellular fluids and its tails inward.",2,"Cells",1,null,"Your outline says “phospholipid bilayer,” with a hydrophilic phosphate head and two hydrophobic fatty-acid tails. Your 6e only says “lipid (fat) and protein.” The more specific chemistry is 7e or instructor wording — learn it their way."],
+["cytoplasm","Cytoplasm","The fluid interior of the cell body in which the organelles are suspended.",2,"Cells",1],
+["nucleus-cell","Nucleus (of a neuron)","The structure inside the cell body that holds the cell's chromosomes — the genetic instructions for building proteins.",2,"Cells",1,null,"Do not confuse with “nucleus” in Ch3, which means a cluster of cell bodies in the CNS."],
+["organelle","Organelles","Internal structures of the cell responsible for converting nutrients into fuel, constructing proteins and lipids, and removing waste materials.",2,"Cells",1],
+["glia","Glial cell","A nonneural cell that provides several supporting functions to neurons, including myelination.",2,"Cells",1],
+["oligo","Oligodendrocyte","A type of glial cell that forms the myelin covering of neurons in the brain and spinal cord.",2,"Cells",1],
+["schwann","Schwann cell","A type of glial cell that forms the myelin covering on neurons outside the brain and spinal cord. Regenerates damaged cells in the PNS and acts as a bridge for regrowth.",2,"Cells",1],
+["radial","Radial glia","Glial cells that, during fetal development, form scaffolds that guide new neurons to their destinations.",2,"Cells",1],
+["microglia","Microglia","Glial cells that provide immune protection in the central nervous system by acting as macrophages.",2,"Cells",1],
+["astrocyte","Astrocyte","A star-shaped glial cell that supports neurons structurally, contributes to the blood–brain barrier, removes and recycles transmitter from the cleft, and helps form synapses — neurons make about seven times as many connections when astrocytes are present.",2,"Cells",1],
+["phagocyte","Phagocyte","A cell that engulfs and digests debris and dead cells, clearing waste from nervous tissue.",2,"Cells",1],
+/* ---- Ch2 · impulse ---- */
+["permeability","Selective permeability","The property of the membrane by which some molecules diffuse freely through it, some cannot pass at all, and others pass only through channels. It produces polarization — a difference in electrical charge between the inside and outside of the neuron.",2,"Impulse",1],
+["resting","Resting potential","The difference in charge between the inside and outside of the membrane of a neuron at rest — typically about −70 mV.",2,"Impulse",1],
+["diffusion","Force of diffusion","The force by which molecules spread from an area of higher concentration to an area of lower concentration.",2,"Impulse",1],
+["electrostatic","Electrostatic pressure","The force by which like-charged ions are repelled by each other and opposite-charged ions are attracted to each other.",2,"Impulse",1],
+["ion","Ion","An element or atom that is charged because it has lost or gained one or more electrons.",2,"Impulse",1],
+["cation","Cation","An ion carrying a positive charge — for example Na⁺ and K⁺.",2,"Impulse",1],
+["anion","Anion","An ion carrying a negative charge — for example Cl⁻ and the organic anions (A⁻) inside the cell.",2,"Impulse",1],
+["napump","Sodium–potassium pump","Large protein molecules that move sodium ions through the neuron membrane to the outside and potassium ions back inside, helping maintain the resting potential.",2,"Impulse",1],
+["ap","Action potential","An all-or-none electrical signal of a neuronal membrane that contains an abrupt voltage depolarization and return to resting potential; allows the neuron to communicate over long distances.",2,"Impulse",1],
+["depol","Depolarization","A shift of the membrane's polarity toward zero — the negative charge inside the cell decreases, making an action potential more likely.",2,"Impulse",1],
+["hyperpol","Hyperpolarization","A negative change in a neural membrane's voltage, which is inhibitory and makes an action potential less likely to occur.",2,"Impulse",1],
+["threshold","Threshold of excitation","The level of depolarization sufficient to start an action potential — typically about 10 mV more positive than the resting potential.",2,"Impulse",1],
+["allnone","All-or-none law","The principle that an action potential occurs at full strength or it does not occur at all.",2,"Impulse",1],
+["absrp","Absolute refractory period","A brief period following the peak of the action potential when the sodium ion channels are inactivated and the neuron cannot be fired again.",2,"Impulse",1],
+["relrp","Relative refractory period","The period during which a neuron can be fired again following an action potential but only by an above-threshold stimulus.",2,"Impulse",1],
+["hillock","Axon hillock","The point where the axon joins the cell body; where graded potentials are combined and the action potential begins.",2,"Impulse",1],
+["saltatory","Saltatory conduction","The flow of electricity down the axon in which action potentials jump from one node of Ranvier to the next.",2,"Impulse",1],
+["ranvier","Node of Ranvier","A gap in the myelin sheath covering an axon.",2,"Impulse",1],
+/* ---- Ch2 · synapse ---- */
+["synapse","Synapse","The structure in which a neuron passes electrical or chemical signals to another neuron, muscle, or organ.",2,"Synapse",1],
+["presyn","Presynaptic neuron","The neuron that transmits to another neuron.",2,"Synapse",1],
+["postsyn","Postsynaptic neuron","The neuron that receives transmission from another neuron.",2,"Synapse",1],
+["cleft","Synaptic cleft","The small gap between a presynaptic neuron and a postsynaptic neuron.",2,"Synapse",1],
+["nt","Neurotransmitter","A chemical substance released by a neuron (usually at a synapse) that binds to receptors on the same neuron, nearby neurons, or other tissues such as muscles or organs.",2,"Synapse",1],
+["vesicle","Vesicle","A membrane-enclosed container that stores neurotransmitter in the neuron terminal.",2,"Synapse",1],
+["exocytosis","Exocytosis","The process in which the vesicle membrane opens and the transmitter spills out and diffuses into the synaptic cleft.",2,"Synapse",1],
+["ionotropic","Ionotropic receptor","A receptor that is part of the ion channel and opens the channel immediately to produce quick reactions required for muscle activity and sensory processing.",2,"Synapse",1],
+["metabotropic","Metabotropic receptor","A receptor on a neuron membrane that opens ion channels slowly via a second messenger and produces long-lasting effects.",2,"Synapse",1],
+["graded","Graded potential","A voltage change in a neuron that varies with the strength of the stimulus that initiated it.",2,"Synapse",1],
+["epsp","Excitatory postsynaptic potential (EPSP)","A partial depolarization of the dendrites and cell body, which makes the neuron more likely to fire.",2,"Synapse",1],
+["ipsp","Inhibitory postsynaptic potential (IPSP)","A hyperpolarization of the dendrites and cell body, which makes a neuron less likely to fire.",2,"Synapse",1],
+["spatial","Spatial summation","The process of combining potentials that occur simultaneously at different locations on the dendrites and cell body.",2,"Synapse",1],
+["temporal","Temporal summation","The process of combining potentials that arrive a short time apart on a neuron's dendrites and cell body.",2,"Synapse",1],
+["reuptake","Reuptake","The process by which a neurotransmitter is taken back into the presynaptic terminals by transporters.",2,"Synapse",1],
+["absorption","Absorption (glial)","Termination of synaptic activity in which surrounding glial cells take the transmitter up out of the cleft and recycle it — the main route for glutamate and GABA.",2,"Synapse",1],
+["enzymatic","Enzymatic inactivation","Termination of synaptic activity in which an enzyme breaks the transmitter down in the cleft. Acetylcholine is inactivated by acetylcholinesterase, which splits it into choline and acetate.",2,"Synapse",1],
+["autoreceptor","Autoreceptor","A receptor on a neuron terminal that senses the amount of transmitter in the synaptic cleft and reduces the presynaptic neuron's output when the level is excessive.",2,"Synapse",1],
+["preinhib","Presynaptic inhibition","Decreased release of neurotransmitter from a neuron's terminal as the result of another neuron's release of neurotransmitter onto that terminal (an axoaxonic synapse).",2,"Synapse",1],
+["preexcit","Presynaptic excitation","Increased release of neurotransmitter from a neuron's terminal as the result of another neuron's release of neurotransmitter onto that terminal (an axoaxonic synapse).",2,"Synapse",1],
+/* ---- Ch2 · transmitters ---- */
+["nicotinic","Nicotinic receptor","One of the two acetylcholine receptor subtypes, named because nicotine also activates it. Excitatory; found in muscles and, in lesser numbers, in the brain.",2,"Transmitters",1],
+["muscarinic","Muscarinic receptor","One of the two acetylcholine receptor subtypes, named for the mushroom derivative that stimulates it. More frequent in the brain, where it is excitatory at some locations and inhibitory at others.",2,"Transmitters",1],
+["corelease","Corelease","A pattern of transmitter release in which two transmitters are packaged in the same vesicles and so are released together.",2,"Transmitters",1],
+["cotrans","Cotransmission","A pattern of transmitter release in which two transmitters are held in separate vesicles, so they can be released independently.",2,"Transmitters",1],
+["network","Neural network","A group of neurons that function together to carry out a process.",2,"Codes",1],
+/* ---- Ch3 · terminology & protection ---- */
+["neuroanatomy","Neuroanatomy","The study of the structure of the nervous system.",3,"Terminology",1],
+["cns","Central nervous system (CNS)","The part of the nervous system made up of the brain and spinal cord.",3,"Terminology",1],
+["pns","Peripheral nervous system (PNS)","The part of the nervous system made up of the cranial nerves and spinal nerves.",3,"Terminology",1],
+["nerve","Nerve","A bundle of axons running together like a multiwire cable — in the peripheral nervous system.",3,"Terminology",1],
+["tract","Tract","A bundle of axons in the central nervous system.",3,"Terminology",1],
+["ganglion","Ganglion","A group of cell bodies in the peripheral nervous system.",3,"Terminology",1],
+["nucleus-cns","Nucleus (CNS)","A cluster of cell bodies in the central nervous system.",3,"Terminology",1],
+["neuraltube","Neural tube","The tubular structure formed when the neural groove on the embryo's surface curls closed; its upper end develops into the brain and its lower end into the spinal cord.",3,"CNS",1],
+["ventricles","Ventricles","Fluid-filled cavities in the brain, continuous with the central canal of the spinal cord, that develop from the hollow interior of the nervous system.",3,"CNS",1],
+["latvent","Lateral ventricles","The paired ventricles, one in each hemisphere, surrounded by the corpus callosum and lying above the third ventricle.",3,"CNS",1],
+["thirdvent","Third ventricle","The ventricle below and connected to the lateral ventricles, located between the two thalami and the two halves of the hypothalamus, which form its walls.",3,"CNS",1],
+["aqueduct","Cerebral aqueduct","The passage through the midbrain that connects the third ventricle above with the fourth ventricle below.",3,"CNS",1],
+["fourthvent","Fourth ventricle","The ventricle in the hindbrain, below the cerebral aqueduct, continuous with the central canal of the spinal cord.",3,"CNS",1],
+["canal","Central canal","The fluid-filled channel running down the axis of the spinal cord, continuous with the fourth ventricle.",3,"CNS",1],
+["csf","Cerebrospinal fluid (CSF)","Liquid in the ventricles and spinal canal that carries material from the blood vessels to the central nervous system and transports waste materials in the other direction. It also helps cushion the brain and spinal cord.",3,"CNS",1],
+["meninges","Meninges","A three-layered membrane that encloses and protects the brain.",3,"CNS",1],
+["dura","Dura mater","The outermost of the three meninges — the tough outer covering.",3,"CNS",1],
+["arachnoid","Arachnoid layer","The middle meningeal layer, which separates the blood and the cerebrospinal fluid.",3,"CNS",1],
+["pia","Pia mater","The innermost meningeal layer, lying directly on the surface of the brain.",3,"CNS",1],
+["subarach","Subarachnoid space","The space beneath the arachnoid layer through which cerebrospinal fluid circulates around the brain and spinal cord.",3,"CNS",1],
+["bbb","Blood–brain barrier","The brain's protection from toxic substances and neurotransmitters in the bloodstream; the small openings in the capillary walls prevent large molecules from passing through unless they are fat soluble or carried through by special transporters.",3,"CNS",1],
+["prosen","Prosencephalon (forebrain)","The most anterior of the three main divisions of the brain, comprising the telencephalon and the diencephalon.",3,"CNS",1],
+["telen","Telencephalon","The division of the forebrain containing the cerebral cortex, basal ganglia, limbic system and olfactory system.",3,"CNS",1],
+["dien","Diencephalon","The division of the forebrain containing the thalamus and hypothalamus.",3,"CNS",1],
+["mesen","Mesencephalon (midbrain)","The middle part of the brain, consisting of the tectum (roof) on the dorsal side and the tegmentum on the ventral side.",3,"CNS",1],
+["rhomben","Rhombencephalon (hindbrain)","The most posterior of the three main divisions of the brain, containing the medulla, pons and cerebellum.",3,"CNS",1],
+/* ---- Ch3 · forebrain ---- */
+["basal","Basal ganglia","The caudate nucleus, putamen and globus pallidus (with the nucleus accumbens), located subcortically in the frontal lobes. Voluntary movement, emotional expression, habit formation and reward.",3,"Forebrain",1],
+["limbic","Limbic system","A group of forebrain structures arranged around the upper brain stem that have roles in emotion, motivated behavior, and learning.",3,"Forebrain",1],
+["hippocampus","Hippocampus","A limbic structure responsible for learning and long-term memory consolidation; connected by the fornix.",3,"Forebrain",1],
+["amygdala","Amygdala","A limbic system structure located near the lateral ventricle in each temporal lobe, involved with a variety of emotions — especially fear and anxiety — and with sexual behavior, aggression, and learning in emotional situations.",3,"Forebrain",1],
+["cingulate","Cingulate gyrus","A limbic structure involved in emotional processing and behavioral regulation.",3,"Forebrain",1],
+["olfactory","Olfactory system","The olfactory bulb and tracts, which process the sense of smell.",3,"Forebrain",1],
+["cortex","Cerebral cortex","The outer layer of the cerebrum, responsible for the highest level of information processing.",3,"Forebrain",1],
+["thalamus","Thalamus","A forebrain structure lying just below the lateral ventricles, which receives information from all sensory systems except olfaction and relays it to the respective cortical projection areas.",3,"Forebrain",1],
+["hypothalamus","Hypothalamus","A subcortical structure in the forebrain just below the thalamus that plays a major role in controlling emotion and motivated behaviors, such as eating, drinking, and sexual activity. It also controls the autonomic nervous system and the endocrine system.",3,"Forebrain",1],
+["pituitary","Pituitary gland","The “master gland” of the endocrine system, controlled by the hypothalamus.",3,"Forebrain",1],
+["pineal","Pineal gland","The gland governing circadian and seasonal rhythms through the release of melatonin.",3,"Forebrain",1],
+/* ---- Ch3 · midbrain / hindbrain ---- */
+["tectum","Tectum","The roof of the midbrain, on its dorsal side, containing the superior and inferior colliculi.",3,"Midbrain",1],
+["supcol","Superior colliculus","A tectal structure responsible for visual processing and eye movements.",3,"Midbrain",1],
+["infcol","Inferior colliculus","A tectal structure responsible for auditory processing and sound localization.",3,"Midbrain",1],
+["tegmentum","Tegmentum","The ventral portion of the midbrain, containing the substantia nigra, ventral tegmental area, periaqueductal grey, red nucleus and part of the reticular formation.",3,"Midbrain",1],
+["nigra","Substantia nigra","The nucleus that sends dopamine-releasing neurons to the striatum and that deteriorates in Parkinson's disease. Planning movement, reward and motor coordination.",3,"Midbrain",1],
+["vta","Ventral tegmental area (VTA)","A part of the mesolimbocortical dopamine system that sends neurons to the nucleus accumbens and is a potent reward area. Reward, motivation and addiction.",3,"Midbrain",1],
+["pag","Periaqueductal grey (PAG)","A brain stem structure with numerous endorphin synapses; stimulation reduces pain transmission at the spinal cord level. Pain modulation and autonomic survival behaviors.",3,"Midbrain",1],
+["rednuc","Red nucleus","A tegmental structure governing muscle tone and limb movements.",3,"Midbrain",1],
+["reticular","Reticular formation","A collection of more than 90 nuclei running through the middle of the hindbrain and the midbrain with roles in sleep and arousal, attention, reflexes, and muscle tone.",3,"Midbrain",1],
+["medulla","Medulla oblongata","The lower part of the hindbrain, just above the spinal cord; its nuclei control essential life processes such as breathing, heart rate, emesis and swallowing. Carries cranial nerves V–XII.",3,"Hindbrain",1],
+["pons","Pons","A part of the brain stem that connects the two halves of the brain and contains centers related to sleep and arousal; also motor activity, reflexes and muscle tone. Contains part of the reticular formation.",3,"Hindbrain",1],
+["cerebellum","Cerebellum","The “little brain” in the hindbrain: refines movements for speed, intensity and direction, carries out sensory processing needed for movement, and stores automated movement patterns and procedural memory. It holds about 70% of the brain's neurons.",3,"Hindbrain",1],
+/* ---- Ch3 · cortex ---- */
+["ventral","Ventral","Toward the stomach side.",3,"Cortex",1],
+["dorsal","Dorsal","Toward the back side of the body.",3,"Cortex",1],
+["anterior","Anterior","Toward the front.",3,"Cortex",1],
+["posterior","Posterior","Toward the rear.",3,"Cortex",1],
+["medial","Medial","Toward the middle.",3,"Cortex",1],
+["lateral","Lateral","Toward the side.",3,"Cortex",1],
+["horizontal","Horizontal plane","The plane that divides the brain into upper and lower parts.",3,"Cortex",1],
+["coronal","Coronal plane","The plane that divides the brain into front and back parts.",3,"Cortex",1],
+["sagittal","Sagittal plane","The plane that divides the brain into left and right parts.",3,"Cortex",1],
+["longfiss","Longitudinal fissure","The large fissure that extends the length of the brain, separating the two cerebral hemispheres.",3,"Cortex",1],
+["callosum","Corpus callosum","The largest of the groups of neurons connecting the two cerebral hemispheres.",3,"Cortex",1],
+["commissure","Anterior commissure","A smaller band of axons connecting the two cerebral hemispheres.",3,"Cortex",1],
+["sulcus","Sulcus","A shallow groove or space between two gyri, not as deep as a fissure.",3,"Cortex",1],
+["fissure","Fissure","A deep groove between gyri of the cerebral hemispheres that is larger than a sulcus.",3,"Cortex",1],
+["gyrus","Gyrus","A ridge in the cerebral cortex; the area between two sulci.",3,"Cortex",1],
+["gray","Gray matter","The outer surface of the cortex, made up mostly of the cell bodies of neurons; because cell bodies lack myelin it looks grayish.",3,"Cortex",1],
+["white","White matter","The central core of each gyrus, made of myelinated axons, which joins with the white matter of the next gyrus to form the large bands of axons that serve as communication routes.",3,"Cortex",1],
+["laminae","Laminae","The layers of the cortex — soma layers separated by layers of fibers, typically six, varying in thickness and function.",3,"Cortex",1],
+["columns","Columns","Groups of 80–100 interconnected neurons arranged perpendicular to the laminae, whose cells have similar properties.",3,"Cortex",1],
+["m1","Primary motor cortex","The area on the precentral gyrus responsible for the execution of voluntary movements — contralateral control of fine, voluntary movement, organized topographically in a homunculus.",3,"Lobes",1],
+["prefrontal","Prefrontal cortex","The most anterior cortex of the frontal lobes; receives information from all sensory systems and is involved in working memory, planning and organization of behavior, decision making, and adjusting behavior in response to its consequences.",3,"Lobes",1],
+["broca","Broca's area","An area of the frontal lobe, anterior to the motor area and along the lateral fissure, that controls speech production and the motor control involved in speech. Damage causes difficulty producing speech and writing — Broca's aphasia.",3,"Lobes",1],
+["s1","Primary somatosensory cortex","The area on the postcentral gyrus of the parietal lobes that processes the skin senses — touch, warmth, cold, pain — organized topographically in a homunculus.",3,"Lobes",1],
+["parassoc","Parietal association areas","Areas that process sensory information about body position and movement, from muscle-stretch receptors and joint receptors.",3,"Lobes",1],
+["neglect","Neglect","A disorder in which the person ignores objects, people, and activity on the side opposite the brain damage. Caused by damage to the posterior parietal cortex.",3,"Lobes",1],
+["a1","Primary auditory cortex","The temporal lobe area that receives and processes sound information from both ears.",3,"Lobes",1],
+["wernicke","Wernicke's area","An association area just posterior to the auditory cortex that interprets language input. Damage causes trouble understanding speech or writing — Wernicke's aphasia, with fluent but meaningless “word salad.”",3,"Lobes",1],
+["itc","Inferior temporal cortex","An area in the lower part of the temporal lobe that plays a major role in the visual identification of objects.",3,"Lobes",1],
+["v1","Primary visual cortex (striate cortex)","The occipital area where visual information is processed. It contains a retinotopic map of visual space, receives information from the thalamus, and projects to the posterior tips of the other lobes.",3,"Lobes",1],
+["occassoc","Occipital association areas","Four areas anterior to the primary visual cortex that detect and integrate individual components of a visual scene — color, movement and form.",3,"Lobes",1],
+["corticalblind","Cortical blindness","Loss of vision resulting from damage to the primary visual cortex rather than to the eye.",3,"Lobes",1],
+["homunculus","Homunculus","The topographic “little man” map of the body parts onto the motor and somatosensory areas of each hemisphere.",3,"Lobes",1],
+/* ---- Ch3 · PNS ---- */
+["cranial","Cranial nerves","The 12 pairs of nerves that process information from both inside and outside the body; most have both sensory and motor components.",3,"PNS",1],
+["somatic","Somatic nervous system","The division of the peripheral nervous system that carries sensory information into the central nervous system and motor commands from the CNS to the skeletal muscles — the voluntary branch.",3,"PNS",1],
+["ans","Autonomic nervous system (ANS)","One of the two branches of the peripheral nervous system; it is composed of the sympathetic and parasympathetic nervous systems, which control smooth muscle, glands, and the heart and other organs.",3,"PNS",1],
+["symp","Sympathetic nervous system","The branch of the autonomic nervous system that activates the body in ways that help it cope with demands, such as emotional stress and physical emergencies — fight or flight.",3,"PNS",1],
+["para","Parasympathetic nervous system","The branch of the autonomic nervous system that slows the activity of most organs to conserve energy and activates digestion to renew energy — rest and digest.",3,"PNS",1],
+["ganglionchain","Sympathetic ganglion chain","The structure running along each side of the spine through which most sympathetic neurons pass on their way to and from the body's organs.",3,"PNS",1],
+["reflexarc","Reflex","A simple, automatic movement in response to a sensory stimulus, mediated by the spinal nerves and the spinal cord.",3,"PNS",1],
+/* ---- Ch3 · read on your own (tier 2 + slide-backed) ---- */
+["spinalcord","Spinal cord","A finger-sized cable of neurons that carries commands from the brain to the muscles and organs and sensory information into the brain.",3,"ReadOwn",1],
+["dorsalroot","Dorsal root","The branch of a spinal nerve through which sensory neurons enter the spinal cord.",3,"ReadOwn",1],
+["ventralroot","Ventral root","The branch of each spinal nerve through which the motor neurons exit; their cell bodies lie in the ventral horns.",3,"ReadOwn",1],
+["proliferation","Proliferation","The first stage of nervous system development, in which cells that will become neurons multiply at the rate of 250,000 new cells every minute, in the ventricular zone.",3,"ReadOwn",1],
+["migration","Migration","The stage of development in which newly formed neurons move from the ventricular zone to their final destinations, most of them travelling along radial glial cells.",3,"ReadOwn",1],
+["circuitform","Circuit formation","The stage in which the axons of developing neurons grow toward their target cells and form functional connections.",3,"ReadOwn",1],
+["growthcone","Growth cone","A formation at the tip of a migrating neuron that samples the environment for directional cues.",3,"ReadOwn",1],
+["pruning","Circuit pruning","The stage involving the elimination of excess neurons and synapses, refining the nervous system's organization and correcting errors.",3,"ReadOwn",1],
+["neurotrophin","Neurotrophin","A chemical sent by the postsynaptic neuron back to the presynaptic terminals that enhances the development and survival of synapses.",3,"ReadOwn",2],
+["myelination","Myelination","The final maturation step, beginning with lower brain structures and proceeding to the cerebral hemispheres from occipital to frontal lobes; it starts near the end of the third trimester and is not complete until late adolescence or beyond.",3,"ReadOwn",2],
+["plasticity","Plasticity","The ability to be modified; a characteristic of the nervous system.",3,"ReadOwn",1],
+["reorganization","Reorganization","A shift in neural connections that changes the function of an area of the brain.",3,"ReadOwn",2],
+["specificnerve","Doctrine of specific nerve energies","The claim that each sensory projection area produces its own unique experience regardless of the kind of stimulation it receives.",3,"ReadOwn",2],
+["stroke","Stroke","A medical condition caused by a loss of blood flow in the brain; also known as a cerebrovascular accident.",3,"ReadOwn",2],
+["excitotoxicity","Excitotoxicity","The main source of stroke damage: dying neurons release excess glutamate, which overstimulates surrounding neurons, and those neurons die as large amounts of calcium enter the cells.",3,"ReadOwn",2],
+["tbi","Traumatic brain injury (TBI)","An injury caused by an external mechanical force, such as a blow to the head or sudden acceleration or deceleration. Concussion is the most common form.",3,"ReadOwn",2],
+["regeneration","Regeneration","The growth of severed axons; in mammals it is limited to the peripheral nervous system.",3,"ReadOwn",2],
+["neurogenesis","Neurogenesis","The birth of new neurons — most extensive in the hippocampus and near the lateral ventricles, supplying the olfactory bulb.",3,"ReadOwn",2],
+["compensation","Compensation","A response to nervous system injury in which surviving presynaptic neurons sprout new terminals, postsynaptic neurons add more receptors, or surrounding tissue takes over functions.",3,"ReadOwn",2],
+["nogo","Nogo-A","A protein that inhibits regeneration following injury; blocking its receptors is one strategy for encouraging axon regrowth.",3,"ReadOwn",2],
+["stemcell","Stem cell","An undifferentiated cell that can develop into specialized cells.",3,"ReadOwn",2],
+["pluripotent","Pluripotent","Describing embryonic stem cells, which can differentiate into any cell in the body.",3,"ReadOwn",2],
+["multipotent","Multipotent","Describing neural stem cells, which can differentiate into any neuron and glial cells.",3,"ReadOwn",2]
+].map(function(r){return {id:r[0],term:r[1],def:r[2],ch:r[3],sec:r[4],tier:r[5],alt:r[6]||null,flag:r[7]||null};});
+
+const BY_ID = {}; T.forEach(function(t){BY_ID[t.id]=t;});
+
+/* ===================== OUTLINES ===================== */
+// n = numbering label, t = term id (pulls term+def), or x = literal html, k = kids
+function n(label,id,extra){return {n:label,t:id,x:extra||null};}
+function lit(label,html,kids){return {n:label,x:html,k:kids||null};}
+
+const OUT2 = [
+ {h:"The Cells of the Nervous System",src:"Outline pp. 1 · Slides 2–8",k:[
+  lit("I.","<b>Neurons</b> <span class='chip ref'>Fig. 2.4 · Table 2.1</span>",[
+    lit("A.","<span class='given'>Receive and transmit information to other cells through electrochemical transmission.</span>"),
+    n("B.","neuron-motor"),n("C.","neuron-sensory"),
+    lit("","",null),
+    n("1.","neuron-unipolar"),n("2.","neuron-bipolar"),n("D.","neuron-inter")]),
+  lit("II.","<b>Parts of the Neuron</b> <span class='chip ref'>Fig. 2.3 · Slide 4</span>",[
+    n("A.","soma"),n("B.","dendrite"),n("C.","axon"),n("1.","afferent"),n("2.","efferent"),n("D.","myelin"),n("E.","terminal")]),
+  lit("III.","<b>Internal Structures of the Neuron</b> <span class='chip ref'>Fig. 2.2 · Slide 7</span>",[
+    n("A.","membrane"),n("B.","cytoplasm"),n("C.","nucleus-cell"),n("D.","organelle")]),
+  lit("IV.","<b>Glial Cells</b> <span class='chip ref'>Table 2.2 · Slide 8</span>",[
+    n("A.","glia"),n("1.","oligo"),n("2.","schwann"),n("3.","radial"),n("4.","microglia"),n("5.","astrocyte"),n("6.","phagocyte")])]},
+ {h:"The Nerve Impulse",src:"Outline pp. 1–2 · Slides 9–12",k:[
+  lit("I.","<b>The Neural Membrane</b> <span class='chip ref'>Fig. 2.5 · Slide 9</span>",[n("A.","membrane"),n("B.","permeability")]),
+  lit("II.","<b>The Resting Potential</b> <span class='chip ref'>Fig. 2.7 · Slide 10</span>",[
+    n("A.","resting"),n("1.","diffusion"),n("2.","electrostatic"),n("a.","cation"),n("b.","anion"),
+    lit("C.","<span class='given'>Cl⁻ and Na⁺ are most concentrated <b>outside</b> the cell; K⁺ and the organic anions (A⁻) are concentrated <b>inside</b> — more negative ions in, more positive ions out.</span>"),
+    n("D.","napump")]),
+  lit("III.","<b>The Action Potential</b> <span class='chip ref'>Fig. 2.8 · Slide 11</span>",[
+    n("A.","ap"),n("1.","hyperpol"),n("2.","depol"),n("B.","threshold"),n("C.","allnone"),
+    lit("D.","<span class='given'>At threshold, voltage-gated channels open and Na⁺ rushes in. At the peak, Na⁺ gates close and K⁺ channels open, letting K⁺ out and ending the action potential.</span>"),
+    n("E.","absrp"),n("F.","relrp")]),
+  lit("IV.","<b>Propagation of the Action Potential</b> <span class='chip ref'>Fig. 2.9 · Slide 12</span>",[
+    n("A.","hillock"),n("B.","saltatory"),n("C.","ranvier"),
+    lit("D.","<span class='given'>Oligodendrocytes myelinate CNS axons; Schwann cells myelinate PNS axons — your professor retitled this slide to foreground that contrast.</span> <span class='chip prof'>slide 12</span>")])]},
+ {h:"How Neurons Communicate",src:"Outline p. 2 · Slides 13–18",k:[
+  lit("I.","<b>The Synapse</b> <span class='chip ref'>Fig. 2.12 · Slide 13</span>",[n("A.","synapse"),n("1.","presyn"),n("2.","postsyn"),n("B.","cleft")]),
+  lit("II.","<b>Chemical Transmission at the Synapse</b> <span class='chip ref'>Fig. 2.13, 2.14 · Slides 14–15</span>",[
+    n("A.","nt"),
+    lit("B.","<span class='given'>Otto Loewi first demonstrated chemical transmission in the lab: stimulating the vagus nerve of one frog heart slowed it, and fluid from that heart slowed a second heart.</span> <span class='chip ref'>Fig. 2.13</span>"),
+    n("C.","vesicle"),
+    lit("D.","<span class='given'>When an action potential reaches the terminal, Ca²⁺ enters from the extracellular fluid and causes vesicles to fuse with the membrane.</span> <span class='chip ref'>Fig. 2.14</span>"),
+    n("E.","exocytosis")]),
+  lit("III.","<b>Activation of the Postsynaptic Cell</b> <span class='chip ref'>Slide 15</span>",[
+    n("A.","ionotropic"),
+    lit("","<span class='given'>Glutamate opens Na⁺ gates (excitatory); GABA opens Cl⁻ gates (inhibitory).</span>"),
+    n("B.","metabotropic"),
+    lit("","<span class='given'>Possible second-messenger messages: open or close ion channels, alter the cell's protein production, or change the number or sensitivity of its receptors.</span>")]),
+  lit("IV.","<b>Integration of Messages</b> <span class='chip ref'>Fig. 2.17 · Slide 16</span>",[
+    n("A.","graded"),n("1.","epsp"),n("2.","ipsp"),
+    lit("B.","<span class='given'>A typical neuron receives input from around 1,000 other neurons — as many as 10,000 synaptic connections in most parts of the brain.</span>"),
+    n("C.","spatial"),n("D.","temporal"),
+    lit("E.","<span class='given'>More EPSPs = more likely to reach threshold and fire. More IPSPs = less likely to fire. The neuron is both an information integrator and a decision-maker.</span>")]),
+  lit("V.","<b>Terminating Synaptic Activity</b> <span class='chip ref'>Fig. 2.20 · Slide 17</span>",[
+    n("A.","reuptake"),n("B.","absorption"),n("C.","enzymatic")]),
+  lit("VI.","<b>Regulating Synaptic Activity</b> <span class='chip prof'>slide 18 — not in your outline</span>",[
+    lit("A.","<span class='given'>Axodendritic and axosomatic synapses end on dendrites and cell bodies. At <b>axoaxonic</b> synapses a third neuron releases transmitter onto the presynaptic terminal.</span>"),
+    n("B.","preexcit"),n("C.","preinhib"),n("D.","autoreceptor")])]},
+ {h:"Neurotransmitters",src:"Outline pp. 2–3 · Slides 19–20",k:[
+  lit("I.","<b>The twelve transmitters</b> <span class='chip ref'>Table 2.3 · 6e: Table 2.2, p. 40</span>",[
+    lit("","<span class='given'>See the reference tables — acetylcholine, the monoamines, the amino acids, the neuropeptides, and one gas.</span>")]),
+  lit("II.","<b>Synthesis of Transmitter</b>",[
+    lit("A.","<span class='given'>Serotonin (5-HT) is synthesized from the dietary precursor <b>tryptophan</b>.</span>"),
+    lit("B.","<span class='given'>Dopamine, epinephrine and norepinephrine are all synthesized from <b>tyrosine</b>.</span>")]),
+  lit("III.","<b>Transport of Transmitters</b>",[
+    lit("","<span class='given'>Some transmitters are produced in the presynaptic terminal itself; others are produced in the cell body and transported down the axon.</span>")]),
+  lit("IV.","<b>Receptor Subtypes</b>",[
+    lit("A.","<span class='given'>Each neurotransmitter can have multiple receptor subtypes.</span>"),
+    n("1.","nicotinic"),n("2.","muscarinic"),
+    lit("B.","<span class='given'>Serotonin has at least 15 different subtypes.</span>")]),
+  lit("V.","<b>Patterns of Transmitter Release</b> <span class='chip ref'>Fig. 2.23 · Slide 20</span>",[
+    n("A.","corelease"),n("B.","cotrans"),
+    lit("C.","<span class='given'>Cotransmission by Ca²⁺ sensitivity: the separate vesicles respond to different calcium levels, so low-frequency firing releases one transmitter and high-frequency firing releases both.</span>"),
+    lit("D.","<span class='given'>Cotransmission by spatial segregation: different transmitters are released from different terminals of the same neuron.</span>")])]},
+ {h:"Neural Codes and Neural Networks",src:"Outline p. 3 · Slides 21–23",k:[
+  lit("I.","<b>Coding of Neural Messages</b> <span class='chip prof'>slide 22</span>",[
+    lit("A.","<span class='given'>Neurons vary the intervals between spikes, producing bursts of varying lengths separated by different intervals. The brain uses these variations in firing pattern as a code.</span>"),
+    lit("B.","<b>Lorenzo &amp; Hecht (1993)</b> <span class='chip ref'>Fig. 2.24 · 6e: Fig. 2.23</span> <span class='given'>— recorded firing patterns in individual taste neurons of rats during stimulation with sucrose and with quinine, then reproduced those two temporal patterns as electrical pulses in the cortical taste centers of <i>other</i> rats.</span>"),
+    lit("","<b>What they found:</b> the rats behaved as though they were tasting the real substance — licking a water tube more during the sucrose pattern and less during the quinine pattern. The temporal firing pattern alone carried the taste."),
+    lit("C.","<span class='given'>This coding is <b>not</b> sufficient on its own to carry the complex information the brain communicates.</span>")]),
+  lit("II.","<b>Neural Networks</b> <span class='chip prof'>slide 23</span>",[
+    n("A.","network"),
+    lit("B.","<span class='given'>Small, local networks carry out a single process (discriminating color). Widespread networks combine distant areas for complex processes — language (Ch 9), object identification and localization (Ch 10), conscious awareness (Ch 15).</span>")])]}
+];
+
+const OUT3 = [
+ {h:"Introductory Terminology",src:"Outline p. 1 · Table 3.1 · Slide 2",k:[
+  n("•","neuroanatomy"),n("•","cns"),n("•","pns"),
+  lit("•","<b>Groups of cells</b> <span class='chip ref'>Table 3.1</span>",[n("–","nerve"),n("–","tract"),n("–","ganglion"),n("–","nucleus-cns")])]},
+ {h:"The Central Nervous System",src:"Outline p. 1 · Slides 3–6",k:[
+  lit("I.","<b>Development of the CNS</b> <span class='chip ref'>Fig. 3.3 · Slide 3</span>",[n("A.","neuraltube")]),
+  lit("II.","<b>Organization of the CNS</b>",[
+    lit("A.","<b>The Ventricles</b> <span class='chip ref'>Fig. 3.16 · Slide 4</span>",[
+      n("1.","ventricles"),n("a.","latvent"),n("b.","thirdvent"),n("c.","aqueduct"),n("d.","fourthvent"),n("e.","canal"),n("2.","csf"),
+      lit("3.","<span class='given'>Functions of CSF: cushioning, physical support, reservoir for hormones and nutrients, and carrying waste.</span>")]),
+    lit("B.","<b>Meninges</b> <span class='chip ref'>Slide 5</span>",[n("1.","meninges"),n("2.","dura"),n("3.","arachnoid"),n("4.","pia"),n("5.","subarach")]),
+    lit("C.","<b>The Blood–Brain Barrier</b> <span class='chip ref'>Fig. 3.20 · Slide 5</span>",[
+      n("1.","bbb"),
+      lit("2.","<span class='given'>Formed by the tightly joined endothelial cells of the brain's capillaries, with an active transport system to carry essential molecules across.</span>")]),
+    lit("D.","<b>Three Main Divisions of the Brain</b> <span class='chip ref'>Fig. 3.13 · Slide 6</span>",[
+      n("1.","prosen"),n("a.","telen"),n("b.","dien"),n("2.","mesen"),n("3.","rhomben")])])]},
+ {h:"Forebrain (Prosencephalon)",src:"Outline p. 1 · Slide 19 (your professor's table)",k:[
+  lit("A.","<b>Telencephalon</b>",[
+    n("1.","basal"),n("2.","limbic"),n("a.","hippocampus"),n("b.","amygdala"),n("c.","cingulate"),n("3.","olfactory"),n("4.","cortex")]),
+  lit("B.","<b>Diencephalon</b>",[n("1.","thalamus"),n("2.","hypothalamus"),n("3.","pituitary"),n("4.","pineal")])]},
+ {h:"Midbrain (Mesencephalon)",src:"Outline p. 1 · Slide 20 (your professor's table)",k:[
+  lit("A.","<span class='given'>Structures with roles in vision, hearing, reward and motivation, arousal, pain and movement.</span>"),
+  lit("B.","<b>Tectum</b>",[n("","tectum"),n("1.","supcol"),n("2.","infcol")]),
+  lit("C.","<b>Tegmentum</b>",[n("","tegmentum"),n("1.","nigra"),n("2.","vta"),n("3.","pag"),n("4.","rednuc"),n("5.","reticular")])]},
+ {h:"Hindbrain (Rhombencephalon)",src:"Outline pp. 1–2 · Slide 20",k:[
+  n("A.","medulla"),
+  lit("","<span class='given'>Drug action or damage in the medulla is frequently fatal, because it controls breathing and heart rate.</span>"),
+  n("B.","pons"),n("C.","cerebellum"),
+  lit("","<span class='given'>Alcohol impairs the cerebellum — which is why coordination and balance tests are used in field sobriety testing.</span>")]},
+ {h:"More on the Cerebral Cortex",src:"Outline p. 2 · Slides 8–13",k:[
+  lit("I.","<b>Terms for Direction &amp; Orientation</b> <span class='chip ref'>Fig. 3.9a · Slide 8</span>",[
+    n("1.","ventral"),n("2.","dorsal"),n("3.","anterior"),n("4.","posterior"),n("5.","medial"),n("6.","lateral"),
+    lit("","<span class='given'>In bipeds, the nervous system bends: for the human brain, <b>dorsal</b> means toward the top of the head and <b>ventral</b> toward the underside, while in the spinal cord they keep the four-legged meaning.</span>")]),
+  lit("II.","<b>The Three Planes</b> <span class='chip ref'>Fig. 3.9b</span>",[n("1.","horizontal"),n("2.","coronal"),n("3.","sagittal")]),
+  lit("III.","<b>The Cerebral Hemispheres</b> <span class='chip ref'>Fig. 3.4, 3.7 · Slides 9–10</span>",[
+    n("A.","longfiss"),
+    lit("B.","<span class='given'>Left hemisphere: sequential processing tasks. Right hemisphere: holistic processing tasks. Sensation and motor function are under <b>contralateral</b> control.</span>"),
+    n("C.","callosum"),n("D.","commissure")]),
+  lit("IV.","<b>Convolutions and Matter</b> <span class='chip ref'>Fig. 3.5 · Slide 11</span>",[
+    n("1.","sulcus"),n("2.","fissure"),n("3.","gyrus"),n("4.","gray"),n("5.","white")]),
+  lit("V.","<b>Organization of Cells in the Cortex</b> <span class='chip ref'>Fig. 3.6 · Slide 12</span>",[
+    n("A.","laminae"),
+    lit("","<span class='given'>Layer I: mostly fibers, few cell bodies. Layers II &amp; III: send axons to other cortical areas. Layer IV: receives sensory input from the thalamus. Layers V &amp; VI: send output to other brain areas and the spinal cord.</span>"),
+    n("B.","columns")])]},
+ {h:"The Lobes of the Cortex",src:"Outline pp. 2–3 · Slides 13–19",k:[
+  lit("A.","<b>Frontal Lobes</b> <span class='chip prof'>slide 14</span>",[n("1.","m1"),n("2.","homunculus"),n("3.","prefrontal"),n("4.","broca")]),
+  lit("B.","<b>Parietal Lobes</b> <span class='chip prof'>slide 16</span>",[n("1.","s1"),n("2.","parassoc"),n("3.","neglect")]),
+  lit("C.","<b>Temporal Lobes</b> <span class='chip prof'>slide 17</span>",[n("1.","a1"),n("2.","wernicke"),n("3.","itc")]),
+  lit("D.","<b>Occipital Lobes</b> <span class='chip prof'>slide 18</span>",[n("1.","v1"),n("2.","occassoc"),n("3.","corticalblind")])]},
+ {h:"The Peripheral Nervous System",src:"Outline p. 3 · Slides 24–27",k:[
+  lit("I.","<b>The Cranial Nerves</b> <span class='chip ref'>Fig. 3.22 · Slides 24–25</span>",[n("A.","cranial")]),
+  lit("II.","<b>Major Divisions of the PNS</b>",[
+    lit("A.","<b>Somatic Nervous System</b> <span class='chip prof'>slide 26</span>",[
+      n("1.","somatic"),n("2.","afferent"),n("3.","efferent"),n("4.","reflexarc")]),
+    lit("B.","<b>Autonomic Nervous System</b> <span class='chip ref'>Fig. 3.23 · Slide 27</span>",[
+      n("1.","ans"),n("2.","symp"),n("3.","ganglionchain"),
+      lit("","<span class='given'><b>Sympathetic wiring:</b> short preganglionic axons from the spinal cord to the sympathetic ganglia (releasing ACh), then long postganglionic axons from the ganglia to the organs (releasing NE).</span>"),
+      n("4.","para"),
+      lit("","<span class='given'><b>Parasympathetic wiring:</b> long preganglionic axons from the spinal cord to ganglia beside the organs (ACh), then short postganglionic axons to the organs (ACh). Both legs use acetylcholine.</span>")])])]},
+ {h:"Read on Your Own",src:"Your outline assigns these with no outline of its own — slides 21–23 and 28–42",k:[
+  lit("I.","<b>The Spinal Cord</b> <span class='chip ref'>outline pg. 79–80 · your 6e pp. 66–68 · slides 21–23</span>",[
+    n("A.","spinalcord"),n("B.","dorsalroot"),n("C.","ventralroot"),n("D.","reflexarc")]),
+  lit("II.","<b>Stages of Nervous System Development</b> <span class='chip ref'>outline pg. 85–88 · your 6e pp. 72–76 · slides 28–34</span>",[
+    n("A.","proliferation"),n("B.","migration"),n("C.","circuitform"),n("D.","growthcone"),n("E.","pruning"),n("F.","neurotrophin"),n("G.","myelination")]),
+  lit("III.","<b>How Experience Modifies the Nervous System</b> <span class='chip ref'>outline pg. 88–89 · your 6e pp. 76–78 · slides 35–36</span>",[
+    n("A.","plasticity"),n("B.","reorganization"),n("C.","specificnerve"),
+    lit("D.","<b>Mogilner et al. (1993)</b> <span class='given'>— magnetoencephalography showed the somatosensory map reorganizing within weeks after surgery to separate webbed fingers (syndactyly). Your professor put the full citation on slide 36; it is the concrete case for experience-driven reorganization.</span> <span class='chip prof'>slide 36</span>")]),
+  lit("IV.","<b>Damage and Recovery of the CNS</b> <span class='chip ref'>outline pg. 89–97 · your 6e pp. 78–85 · slides 37–42</span>",[
+    n("A.","stroke"),n("B.","excitotoxicity"),n("C.","tbi"),n("D.","regeneration"),n("E.","neurogenesis"),
+    n("F.","compensation"),n("G.","reorganization"),n("H.","nogo"),n("I.","stemcell"),n("J.","pluripotent"),n("K.","multipotent")])]}
+];
+
+/* ===================== CONFUSIONS ===================== */
+const CONF = [
+ {id:"aff",title:"Afferent vs. Efferent",why:"Pure vocabulary — no concept to understand, only a direction to fix.",
+  sides:[{c:"i",h:"Afferent",p:["Carries information <b>toward</b> a structure","Sensory: skin, muscles, joints → spinal cord","Enters the cord through the <b>dorsal</b> root"]},
+         {c:"e",h:"Efferent",p:["Carries information <b>away</b> from a structure","Motor: CNS → skeletal muscle","Exits the cord through the <b>ventral</b> root"]}],
+  tell:"<b>A</b>fferent <b>A</b>rrives. <b>E</b>fferent <b>E</b>xits. And the roots go in alphabetical order with the letters: <b>d</b>orsal takes in the <b>d</b>ata, ventral sends the movement."},
+ {id:"nak",title:"Na⁺ vs. K⁺ during the action potential",why:"Two ions, two directions, two phases. Reversing them reverses the whole curve.",
+  sides:[{c:"e",h:"Sodium (Na⁺)",p:["Concentrated <b>outside</b> at rest","Rushes <b>in</b> at threshold","Drives the <b>rising</b>, depolarizing phase","Its channels inactivate at the peak → absolute refractory period"]},
+         {c:"i",h:"Potassium (K⁺)",p:["Concentrated <b>inside</b> at rest","Flows <b>out</b> after the peak","Drives the <b>falling</b>, repolarizing phase","Its slow closing causes the undershoot"]}],
+  tell:"The pump keeps the gradient the action potential spends: 3 Na⁺ <b>out</b> for every 2 K⁺ <b>in</b>. Both ions move down their gradient during the spike — Na⁺ in, K⁺ out — and the pump pays it back afterward."},
+ {id:"psp",title:"EPSP vs. IPSP",why:"Both are graded potentials at the dendrites and soma. Only the sign differs — and the sign is the whole answer.",
+  sides:[{c:"e",h:"EPSP",p:["Partial <b>de</b>polarization","Makes the neuron <b>more</b> likely to fire","Glutamate opening Na⁺ gates"]},
+         {c:"i",h:"IPSP",p:["<b>Hyper</b>polarization","Makes the neuron <b>less</b> likely to fire","GABA opening Cl⁻ gates"]}],
+  tell:"Neither one is an action potential. Both are graded — they vary with stimulus strength, and they are summed at the axon hillock, where the all-or-none decision actually happens."},
+ {id:"recep",title:"Ionotropic vs. Metabotropic",why:"Speed and duration are the discriminator, not which transmitter binds.",
+  sides:[{c:"e",h:"Ionotropic",p:["Receptor <b>is part of</b> the ion channel","Opens the channel <b>immediately</b>","Quick, brief","Muscle activity and sensory processing"]},
+         {c:"i",h:"Metabotropic",p:["Receptor is <b>separate</b> from the channel","Opens it <b>indirectly</b>, via a second messenger","Slow, long-lasting","Can also change protein production and receptor number"]}],
+  tell:"“Metabo” = metabolic = a chemical chain of events inside the cell. If the answer mentions a second messenger, it is metabotropic."},
+ {id:"summ",title:"Spatial vs. Temporal summation",why:"Space vs. time. The words tell you, but under exam pressure they blur.",
+  sides:[{c:"n",h:"Spatial",p:["Potentials occurring <b>simultaneously</b>","At <b>different locations</b> on the dendrites and cell body","Many inputs at once"]},
+         {c:"n",h:"Temporal",p:["Potentials arriving <b>a short time apart</b>","From the same or separate inputs","One input firing rapidly"]}],
+  tell:"<b>Spa</b>tial = <b>spa</b>ce = different <b>places</b>. <b>Tempo</b>ral = <b>tempo</b> = timing. Both are combined at the axon hillock."},
+ {id:"vent",title:"The ventricles, in order",why:"Four cavities plus a canal, and the exam will ask about the order or the connections.",
+  sides:[{c:"n",h:"Top to bottom",p:["<b>Lateral</b> ventricles — one per hemisphere","<b>Third</b> ventricle — between the two thalami","<b>Cerebral aqueduct</b> — passes through the midbrain","<b>Fourth</b> ventricle — in the hindbrain","<b>Central canal</b> — down the spinal cord"]},
+         {c:"n",h:"What fills them",p:["Cerebrospinal fluid (CSF)","Cushioning","Physical support","Reservoir for hormones and nutrients","Carries waste away"]}],
+  tell:"The aqueduct is the only one that is a passage rather than a cavity — and it is the landmark for the midbrain, which is why the periaqueductal grey is named for sitting around it."},
+ {id:"coll",title:"Superior vs. Inferior colliculus",why:"Classic matching-question bait: same structure, same name, opposite senses.",
+  sides:[{c:"n",h:"Superior colliculus",p:["<b>Vision</b>","Eye movements"]},
+         {c:"n",h:"Inferior colliculus",p:["<b>Audition</b>","Sound localization"]}],
+  tell:"Your eyes sit <b>above</b> your ears: superior → seeing, inferior → hearing. Both are in the tectum — the roof of the midbrain."},
+ {id:"aph",title:"Broca's vs. Wernicke's",why:"Two areas, two lobes, two aphasias. The most-tested pair in the chapter.",
+  sides:[{c:"e",h:"Broca's area",p:["<b>Frontal</b> lobe, anterior to the motor area","Speech <b>production</b>","Damage → difficulty <b>producing</b> speech and writing","Broca's aphasia: halting, effortful, comprehension intact"]},
+         {c:"i",h:"Wernicke's area",p:["<b>Temporal</b> lobe, posterior to the auditory cortex","Speech <b>comprehension</b>","Damage → trouble <b>understanding</b> speech or writing","Wernicke's aphasia: fluent but meaningless “word salad”"]}],
+  tell:"<b>B</b>roca = <b>B</b>reaking the words out (production, and it is at the front, near the motor cortex that moves the mouth). Wernicke sits next to the auditory cortex, where language comes <b>in</b>."},
+ {id:"ans",title:"Sympathetic vs. Parasympathetic wiring",why:"Everyone knows fight-or-flight vs. rest-and-digest. The axon lengths and transmitters are where the points are lost.",
+  sides:[{c:"e",h:"Sympathetic",p:["Fight or flight — activates the body","<b>Short</b> preganglionic axons → ganglion chain (ACh)","<b>Long</b> postganglionic axons → organs (<b>NE</b>)","Ganglia in two chains beside the spine"]},
+         {c:"i",h:"Parasympathetic",p:["Rest and digest — conserves and restores","<b>Long</b> preganglionic axons → ganglia at the organs (ACh)","<b>Short</b> postganglionic axons → organs (<b>ACh</b>)","Ganglia sit next to the target organ"]}],
+  tell:"Only <b>one</b> of the four legs uses norepinephrine: the sympathetic <b>post</b>ganglionic. Everything else in the ANS is acetylcholine. Ganglion position determines axon length — sympathetic ganglia are near the spine, so the second leg is long."},
+ {id:"conv",title:"Sulcus vs. Fissure vs. Gyrus",why:"Two grooves and a ridge. The only difference between the grooves is depth.",
+  sides:[{c:"n",h:"Sulcus",p:["A <b>shallow</b> groove","Between two gyri","Not as deep as a fissure"]},
+         {c:"n",h:"Fissure",p:["A <b>deep</b> groove","Larger than a sulcus","e.g. longitudinal, lateral"]},
+         {c:"n",h:"Gyrus",p:["A <b>ridge</b>","The area <b>between</b> two sulci","e.g. pre- and postcentral"]}],
+  tell:"Gyrus is the bump, sulcus is the dip, fissure is a deep dip. The precentral gyrus is motor; the postcentral gyrus is somatosensory — and they sit either side of the central sulcus."},
+ {id:"men",title:"Dura vs. Arachnoid vs. Pia",why:"Three layers, and the exam asks for order or for which one does what.",
+  sides:[{c:"n",h:"Dura mater",p:["<b>Outermost</b>","Tough outer covering"]},
+         {c:"n",h:"Arachnoid",p:["<b>Middle</b>","Separates blood from CSF","Subarachnoid space beneath it carries CSF"]},
+         {c:"n",h:"Pia mater",p:["<b>Innermost</b>","Lies directly on the brain's surface"]}],
+  tell:"<i>Dura</i> = durable, the hard one, on the outside. <i>Pia</i> = pious/tender, the delicate one, hugging the brain. Arachnoid = spiderweb, in the middle, with the fluid-filled space under it."},
+ {id:"myel",title:"Oligodendrocytes vs. Schwann cells",why:"Same job, different half of the nervous system — and your professor retitled slide 12 to put this contrast front and centre.",
+  sides:[{c:"i",h:"Oligodendrocyte",p:["Myelinates in the <b>CNS</b>","Brain and spinal cord","One cell myelinates several axons"]},
+         {c:"e",h:"Schwann cell",p:["Myelinates in the <b>PNS</b>","Outside the brain and spinal cord","<b>Regenerates</b> damaged cells and acts as a bridge"]}],
+  tell:"Regeneration only happens in the PNS — which is the Schwann cell's territory. That one fact links this pair to the damage-and-recovery material."},
+ {id:"term",title:"Nerve / Tract / Ganglion / Nucleus",why:"Table 3.1 is a two-by-two, and two-by-twos are matching questions waiting to happen.",
+  sides:[{c:"e",h:"Peripheral",p:["Bundle of axons = <b>nerve</b>","Group of cell bodies = <b>ganglion</b>"]},
+         {c:"i",h:"Central",p:["Bundle of axons = <b>tract</b>","Group of cell bodies = <b>nucleus</b>"]}],
+  tell:"Watch the double meaning: a <b>nucleus</b> in Ch 3 is a cluster of cell bodies in the CNS, but the <b>nucleus</b> in Ch 2 is the organelle holding the chromosomes. Same word, different chapter, and both are fair game."}
+];
+
+/* ===================== REFERENCE TABLES ===================== */
+const TABLES = [
+ {id:"t-neuron",cap:"Table 2.1 — The Major Types of Neurons",src:"Your 6e, p. 25",
+  head:["Type","Function","Form and soma location","Description"],
+  rows:[["Motor","Conducts messages from brain and spinal cord to muscles and organs","Multipolar; central nervous system","Axon, dendrites extend in several directions from cell body"],
+        ["Sensory","Carries information from body and world to brain and spinal cord","Unipolar; peripheral nervous system, cranial nerves","Single short stalk from cell body divides into two branches"],
+        ["","","Bipolar; peripheral nervous system","Axon and dendritic processes on opposite sides of cell body"],
+        ["Interneuron","Conducts information between neurons in same area","Multipolar; central nervous system","Has short or no axon; communicates locally (with nearby neurons)"]]},
+ {id:"t-nt",cap:"Table 2.3 — Some Representative Neurotransmitters",src:"Your outline calls this Table 2.3 · in your 6e it is Table 2.2, p. 40",
+  head:["Neurotransmitter","Function"],
+  rows:[["__Acetylcholine","Transmitter at muscles; in brain, involved in learning, etc."],
+        ["!Monoamines",""],
+        ["Serotonin","Involved in mood, sleep and arousal, aggression, depression, obsessive-compulsive disorder, and alcoholism."],
+        ["Dopamine","Contributes to movement control and promotes reinforcing effects of food, sex, and abused drugs. Dysregulation is involved in schizophrenia and Parkinson's disease."],
+        ["Norepinephrine","A hormone released during stress. Functions as a neurotransmitter in the brain to increase arousal and attentiveness to events in the environment. Diminished transmission is involved in depression."],
+        ["Epinephrine","A stress hormone related to norepinephrine; plays a minor role as a neurotransmitter in the brain."],
+        ["!Amino Acids",""],
+        ["Glutamate","The principal excitatory neurotransmitter in the brain and spinal cord. Vitally involved in learning; dysfunction is implicated in schizophrenia."],
+        ["Gamma-aminobutyric acid (GABA)","The predominant inhibitory neurotransmitter. Its receptors respond to alcohol and the class of tranquilizers called benzodiazepines. Deficiency in GABA or receptors is one cause of epilepsy."],
+        ["Glycine","Inhibitory transmitter in the spinal cord and lower brain. The poison strychnine causes convulsions and death by affecting glycine activity."],
+        ["!Neuropeptides",""],
+        ["Endorphins","Neuromodulators that reduce pain and enhance reinforcement."],
+        ["Substance P","Transmitter in neurons sensitive to pain."],
+        ["Neuropeptide Y","Initiates eating and produces metabolic shifts."],
+        ["!Gas",""],
+        ["Nitric oxide","One of two known gaseous transmitters, along with carbon monoxide. Can serve as a retrograde transmitter, influencing the presynaptic neuron's release of neurotransmitter."]]},
+ {id:"t-fore",cap:"Forebrain structures and their functions",src:"Your professor's slide 19 — built by hand, not in the publisher deck",
+  head:["Structure","Function"],
+  rows:[["Basal ganglia","Voluntary movement, emotional expression, habit formation, and reward (caudate, putamen, globus pallidus, nucleus accumbens)"],
+        ["Limbic system","Memory formation and emotional responses"],
+        ["Hippocampus","Learning and long-term memory consolidation"],
+        ["Amygdala","Emotionally-motivated behavior and emotional processing"],
+        ["Cingulate gyrus","Emotional processing and behavioral regulation"],
+        ["Olfactory system","Processing the sense of smell (olfactory bulb and tracts)"],
+        ["Cerebral cortex","Highest level information processing"],
+        ["!Frontal lobes",""],
+        ["Primary motor cortex","Contralateral control of fine, voluntary movements"],
+        ["Prefrontal cortex","Higher-order cognitive functions, emotional and behavioral regulation"],
+        ["Broca's area","Speech production and the motor control involved in speech"],
+        ["!Parietal lobes",""],
+        ["Somatosensory cortex","Skin senses (touch, warmth, cold, pain)"],
+        ["Association areas","Sensory information about body position and movement"],
+        ["!Temporal lobes",""],
+        ["Primary auditory cortex","Sensory information about sound from both ears"],
+        ["Wernicke's area","Speech comprehension"],
+        ["Inferior temporal cortex","Visual identification of objects"],
+        ["!Occipital lobes",""],
+        ["Primary visual cortex","Sensory information about visual stimuli"],
+        ["Association areas","Information about components of a visual scene (e.g. color, form)"],
+        ["!Diencephalon and connections",""],
+        ["Thalamus","Relay and integration of incoming sensory and motor information"],
+        ["Hypothalamus","Motivated behaviors, autonomic nervous system, endocrine system"],
+        ["Pituitary gland","“Master gland” of the endocrine system"],
+        ["Pineal gland","Circadian and seasonal rhythms, release of melatonin"],
+        ["Corpus callosum","Communication between the hemispheres"],
+        ["Anterior commissure","Communication between the hemispheres"],
+        ["Ventricles","Cushion the brain, reservoir for hormones and nutrients, transport of waste"]]},
+ {id:"t-mid",cap:"Midbrain and hindbrain structures and their functions",src:"Your professor's slide 20 — built by hand",
+  head:["Structure","Function"],
+  rows:[["!Tectum",""],
+        ["Superior colliculus","Visual processing and eye movements"],
+        ["Inferior colliculus","Auditory processing and sound localization"],
+        ["!Tegmentum",""],
+        ["Substantia nigra","Planning movement, reward and motor coordination"],
+        ["Ventral tegmental area","Reward, motivation and addiction"],
+        ["Periaqueductal grey (PAG)","Pain modulation and autonomic survival behaviors"],
+        ["Red nucleus","Muscle tone and limb movements"],
+        ["Reticular formation","Sleep-wake cycle, alertness, and general arousal of the brain"],
+        ["!Hindbrain",""],
+        ["Medulla","Vital life processes (breathing, heart rate, emesis, swallowing)"],
+        ["Pons","Reflexes, muscle tone, selective attention, sleep, arousal of the brain"],
+        ["Cerebellum","Refining movements for speed, intensity and direction; sensory processing needed for movement; automated movement patterns"]]},
+ {id:"t-cranial",cap:"The 12 cranial nerves",src:"Your professor's slide 25 — more detailed than the publisher's figure",
+  head:["Number and name","Sensory component","Motor component"],
+  rows:[["I · Olfactory","Smell","(No motor nerve)"],
+        ["II · Optic","Vision","(No motor nerve)"],
+        ["III · Oculomotor","Sensation from eye muscles","Eye movements, pupil constriction"],
+        ["IV · Trochlear","Sensation from eye muscles","Eye movements"],
+        ["V · Trigeminal","Sensation from skin of face, nose and mouth","Chewing, swallowing"],
+        ["VI · Abducens","Sensation from eye muscles","Eye movements"],
+        ["VII · Facial","Taste from anterior two thirds of tongue, visceral sensation from head","Facial expressions, crying, salivation, dilation of blood vessels in head"],
+        ["VIII · Statacoustic ‡","Hearing, equilibrium","(No motor nerve)"],
+        ["IX · Glossopharyngeal","Taste and other sensation from throat and posterior third of tongue","Swallowing, salivation, dilation of blood vessels"],
+        ["X · Vagus","Taste and sensation from neck, thorax and abdomen","Swallowing, control of larynx, parasympathetic nerves to heart and viscera"],
+        ["XI · Accessory","(No sensory nerve)","Movements of shoulders and head, parasympathetic nerves to viscera"],
+        ["XII · Hypoglossal","Sensation from tongue muscles","Movement of tongue"]],
+  foot:"‡ Your professor writes <b>Statacoustic</b> for CN VIII. Nearly every current source calls it the <b>vestibulocochlear</b> (or auditory) nerve. Write their term on the exam; know the standard one for everything after it."}
+];
+
+/* ===================== 14-DAY PLAN ===================== */
+const EXAM = new Date(2026,9,6); // 6 Oct 2026
+const PLAN = [
+ ["2026-09-22","Ch 2 · cells","Read the filled notes for The Cells of the Nervous System and The Nerve Impulse. Then drill neuron and glia types."],
+ ["2026-09-23","Ch 2 · synapse","Read How Neurons Communicate through to integration. Drill the synapse section; take the Na⁺/K⁺ and EPSP/IPSP confusions."],
+ ["2026-09-24","Ch 2 · transmitters","Neurotransmitters, neural codes and networks. First full Chapter 2 test, all three formats."],
+ ["2026-09-25","Ch 3 · CNS shell","Terminology, ventricles, meninges, blood–brain barrier, the three divisions. Drill the ventricles and meninges confusions."],
+ ["2026-09-26","Ch 3 · forebrain","Work the slide 19 table until you can produce each function from the structure. Matching drill, forebrain only."],
+ ["2026-09-27","Ch 3 · midbrain + hindbrain","Slide 20 table. Drill, then re-test Chapter 2 — first spaced return."],
+ ["2026-09-28","Ch 3 · cortex","Directions, planes, hemispheres, laminae and columns, the four lobes. Broca/Wernicke confusion."],
+ ["2026-09-29","Ch 3 · PNS","Cranial nerves, somatic, autonomic. Drill the sympathetic/parasympathetic wiring until the four legs are automatic."],
+ ["2026-09-30","Read on your own · 1","Spinal cord and the stages of development. These have no outline — the notes here are the outline."],
+ ["2026-10-01","Read on your own · 2","Experience and modification, damage and recovery. Then a full cumulative test. Chapters 2 and 3 are now complete."],
+ ["2026-10-02","Confusions","Every confusion pair in one session, then re-test only what you missed."],
+ ["2026-10-03","New chapters","Add whatever chapters you have sent me by now. Otherwise: cumulative re-test of your weak spots."],
+ ["2026-10-04","Cumulative","Full test, all formats, both chapters. Target: nothing left in the weak-spot list."],
+ ["2026-10-05","Light review","Weak spots only, then read the master tables straight through. Do not learn anything new today."]
+];
+
+/* ===================== STATE ===================== */
+var S = {plan:{},seen:{},missed:{}};
+var DB=null, LS_KEY="soma-to-cortex-v1", saveTimer=null;
+
+function loadLocal(){
+  try{var raw=localStorage.getItem(LS_KEY); if(raw) return JSON.parse(raw);}catch(e){}
+  return null;
+}
+function saveLocal(){ try{localStorage.setItem(LS_KEY,JSON.stringify(S));}catch(e){} }
+function save(){
+  saveLocal();
+  if(saveTimer) clearTimeout(saveTimer);
+  saveTimer=setTimeout(function(){
+    if(!DB) return;
+    DB.doc("progress/main").set({state:JSON.stringify(S),at:new Date().toISOString()})
+      .catch(function(){ /* keep going on localStorage alone */ });
+  },700);
+}
+function mergeState(o){
+  if(!o||typeof o!=="object") return;
+  ["plan","seen","missed"].forEach(function(k){ if(o[k]&&typeof o[k]==="object") S[k]=o[k]; });
+}
+
+(function boot(){
+  var local=loadLocal(); if(local) mergeState(local);
+  render();
+  if(window.claude&&window.claude.use){
+    window.claude.use("db").then(function(db){
+      if(!db) return;
+      DB=db;
+      return db.doc("progress/main").get().then(function(snap){
+        if(snap&&snap.exists){
+          var d=snap.data();
+          if(d&&typeof d.state==="string"){
+            try{ mergeState(JSON.parse(d.state)); render(); }catch(e){}
+          }
+        }
+      });
+    }).catch(function(){});
+  }
+})();
+
+/* ===================== VIEWS ===================== */
+var VIEWS=[
+ {id:"plan",label:"Plan",group:"Work"},
+ {id:"drill",label:"Drill",group:"Work"},
+ {id:"weak",label:"Weak spots",group:"Work"},
+ {id:"ch2",label:"Chapter 2",group:"Notes"},
+ {id:"ch3",label:"Chapter 3",group:"Notes"},
+ {id:"conf",label:"Confusions",group:"Notes"},
+ {id:"tables",label:"Tables",group:"Reference"},
+ {id:"fixes",label:"Corrections",group:"Reference"}
+];
+var view="plan";
+
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+function daysLeft(){
+  var now=new Date(); var a=new Date(now.getFullYear(),now.getMonth(),now.getDate());
+  return Math.round((EXAM-a)/86400000);
+}
+function fmtDate(iso){
+  var p=iso.split("-"); var d=new Date(+p[0],+p[1]-1,+p[2]);
+  var D=["Sun","Mon","Tue","Wed","Thu","Fri","Sat"], M=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  return {dow:D[d.getDay()],md:M[d.getMonth()]+" "+d.getDate()};
+}
+function todayISO(){var d=new Date();return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");}
+
+function renderNav(){
+  var dl=daysLeft();
+  document.getElementById("cd").textContent = dl>0? dl : (dl===0? "today":"—");
+  document.getElementById("cdl").textContent = dl>1? "days to the exam" : dl===1? "day to the exam" : dl===0? "exam day" : "exam has passed";
+  var nav=document.getElementById("nav"), html="", lastGroup=null;
+  VIEWS.forEach(function(v){
+    if(v.group!==lastGroup){ html+='<div class="navgroup">'+v.group+'</div>'; lastGroup=v.group; }
+    var tick="";
+    if(v.id==="plan"){ var done=PLAN.filter(function(p){return S.plan[p[0]];}).length; tick=done+"/"+PLAN.length; }
+    if(v.id==="weak"){ var w=Object.keys(S.missed).filter(function(k){return S.missed[k]>0;}).length; if(w) tick=String(w); }
+    html+='<button class="navbtn" data-v="'+v.id+'" aria-current="'+(view===v.id)+'">'+v.label+
+          (tick?'<span class="tick">'+tick+'</span>':'')+'</button>';
+  });
+  nav.innerHTML=html;
+  nav.querySelectorAll(".navbtn").forEach(function(b){
+    b.onclick=function(){ view=b.dataset.v; render(); window.scrollTo(0,0); };
+  });
+}
+
+function head(kicker,title,lede){
+  return '<div class="pagehead"><div class="kicker">'+kicker+'</div><h2>'+title+'</h2>'+
+         (lede?'<p class="lede">'+lede+'</p>':'')+'</div>';
+}
+
+/* ---------- outline rendering ---------- */
+function renderNode(node){
+  var body="";
+  if(node.t){
+    var t=BY_ID[node.t];
+    if(!t) return "";
+    body='<span class="tm">'+esc(t.term)+':</span> <span class="df">'+esc(t.def)+'</span>';
+    if(t.flag) body+=' <span class="chip flagged" title="'+esc(t.flag)+'">edition note</span>';
+  } else {
+    body=node.x||"";
+  }
+  var kids = node.k ? '<ol class="out">'+node.k.map(renderNode).join("")+'</ol>' : "";
+  if(!body && !kids) return "";
+  return '<li class="row">'+(node.n?'<span class="lbl">'+node.n+'</span>':'')+body+kids+'</li>';
+}
+function renderOutline(blocks){
+  return blocks.map(function(b){
+    return '<section class="sec"><h3>'+esc(b.h)+' <span class="src">'+esc(b.src)+'</span></h3>'+
+           '<ol class="out">'+b.k.map(renderNode).join("")+'</ol></section>';
+  }).join("");
+}
+
+/* ---------- tables ---------- */
+function renderTable(t){
+  var rows=t.rows.map(function(r){
+    if(String(r[0]).charAt(0)==="!") return '<tr class="grp"><td colspan="'+t.head.length+'">'+esc(r[0].slice(1))+'</td></tr>';
+    var cells=r.map(function(c,i){
+      var v=String(c).replace(/^__/,"");
+      return '<td'+(i===0?' class="k"':'')+'>'+(i===0?esc(v):v)+'</td>';
+    }).join("");
+    return "<tr>"+cells+"</tr>";
+  }).join("");
+  return '<div class="tscroll"><table><caption>'+esc(t.cap)+' — <span style="text-transform:none;letter-spacing:0">'+esc(t.src)+'</span></caption>'+
+         '<thead><tr>'+t.head.map(function(h){return "<th>"+esc(h)+"</th>";}).join("")+'</tr></thead>'+
+         '<tbody>'+rows+'</tbody></table></div>'+(t.foot?'<div class="callout">'+t.foot+'</div>':'');
+}
+
+/* ===================== DRILL ===================== */
+var drill={mode:"mc",pool:"all",q:null,answered:false,right:0,total:0,matchState:null};
+
+function poolTerms(){
+  if(drill.pool==="all") return T.slice();
+  if(drill.pool==="ch2") return T.filter(function(t){return t.ch===2;});
+  if(drill.pool==="ch3") return T.filter(function(t){return t.ch===3;});
+  if(drill.pool==="weak"){
+    var w=T.filter(function(t){return (S.missed[t.id]||0)>0;});
+    return w.length?w:T.slice();
+  }
+  return T.filter(function(t){return t.sec===drill.pool;});
+}
+function shuffle(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var x=a[i];a[i]=a[j];a[j]=x;}return a;}
+function pickWeighted(pool){
+  var bag=[];
+  pool.forEach(function(t){
+    var m=S.missed[t.id]||0, s=S.seen[t.id]||0;
+    var w=1+m*3+(s===0?1:0);
+    for(var i=0;i<w;i++) bag.push(t);
+  });
+  return bag[Math.floor(Math.random()*bag.length)];
+}
+function mark(id,ok){
+  S.seen[id]=(S.seen[id]||0)+1;
+  if(ok){ if(S.missed[id]) S.missed[id]=Math.max(0,S.missed[id]-1); }
+  else S.missed[id]=(S.missed[id]||0)+1;
+  drill.total++; if(ok) drill.right++;
+  save();
+}
+function norm(s){
+  return String(s).toLowerCase()
+    .replace(/’/g,"'")
+    .replace(/\([^)]*\)/g,"")
+    .replace(/[^a-z0-9' ]/g," ")
+    .replace(/\b(the|a|an|of)\b/g," ")
+    .replace(/\s+/g," ").trim();
+}
+function answerOK(input,term){
+  var a=norm(input), b=norm(term);
+  if(!a) return false;
+  if(a===b) return true;
+  var bshort=b.split("'")[0].trim();
+  if(a===bshort) return true;
+  // accept the distinctive head of a multiword term, min 4 chars
+  if(b.indexOf(a)===0 && a.length>=Math.max(4,b.length*0.55)) return true;
+  return false;
+}
+function newQuestion(){
+  var pool=poolTerms();
+  drill.answered=false; drill.matchState=null;
+  if(drill.mode==="match"){
+    var pick=shuffle(pool.slice()).slice(0,Math.min(5,pool.length));
+    drill.q={items:pick,defs:shuffle(pick.slice())};
+    drill.matchState={sel:null,solved:{},missed:{}};
+  } else if(drill.mode==="conf"){
+    var c=CONF[Math.floor(Math.random()*CONF.length)];
+    var si=Math.floor(Math.random()*c.sides.length);
+    var side=c.sides[si];
+    var pts=side.p.filter(function(p){return p.replace(/<[^>]+>/g,"").length>8;});
+    drill.q={conf:c,side:si,clue:pts[Math.floor(Math.random()*pts.length)]};
+  } else {
+    var t=pickWeighted(pool);
+    if(drill.mode==="mc"){
+      var same=pool.filter(function(o){return o.id!==t.id&&o.sec===t.sec;});
+      var others=shuffle(same.length>=3?same:pool.filter(function(o){return o.id!==t.id;})).slice(0,3);
+      drill.q={t:t,opts:shuffle([t].concat(others))};
+    } else {
+      drill.q={t:t};
+    }
+  }
+  renderMain();
+}
+function drillBody(){
+  var secs={}; T.forEach(function(t){secs[t.ch+" · "+t.sec]=t.sec;});
+  var opts='<option value="all">Everything</option><option value="ch2">Chapter 2 only</option><option value="ch3">Chapter 3 only</option><option value="weak">My weak spots</option>';
+  Object.keys(secs).sort().forEach(function(k){
+    opts+='<option value="'+secs[k]+'"'+(drill.pool===secs[k]?" selected":"")+'>'+esc(k)+'</option>';
+  });
+  var h='<div class="modes">'+
+    [["mc","Multiple choice"],["fib","Fill in the blank"],["match","Matching"],["conf","Confusion pairs"]].map(function(m){
+      return '<button class="mode" data-m="'+m[0]+'" aria-pressed="'+(drill.mode===m[0])+'">'+m[1]+'</button>';
+    }).join("")+'</div>'+
+    '<div class="pool"><label for="poolsel">Pool</label><select id="poolsel">'+opts+'</select></div>';
+
+  h+='<div class="card">';
+  if(!drill.q){
+    h+='<div class="empty">Pick a mode and press start.</div><div style="margin-top:14px"><button class="btn" id="start">Start drilling</button></div>';
+  } else if(drill.mode==="mc"){
+    h+='<div class="prompt"><span class="q">Which term is this?</span>'+esc(drill.q.t.def)+'</div><div class="opts">';
+    drill.q.opts.forEach(function(o,i){ h+='<button class="opt" data-i="'+i+'">'+esc(o.term)+'</button>'; });
+    h+='</div>';
+  } else if(drill.mode==="fib"){
+    h+='<div class="prompt"><span class="q">Name the term</span>'+esc(drill.q.t.def)+'</div>'+
+       '<div class="fib"><input id="fibin" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="type the term…">'+
+       '<button class="btn" id="fibgo">Check</button></div>';
+  } else if(drill.mode==="match"){
+    h+='<div class="prompt"><span class="q">Match each term to its definition</span></div><div class="match"><div class="mcol">';
+    drill.q.items.forEach(function(t){
+      var st=drill.matchState.solved[t.id]?" done":(drill.matchState.sel===t.id?" sel":"");
+      h+='<button class="mitem'+st+'" data-t="'+t.id+'"'+(drill.matchState.solved[t.id]?" disabled":"")+'>'+esc(t.term)+'</button>';
+    });
+    h+='</div><div class="mcol">';
+    drill.q.defs.forEach(function(t){
+      var st=drill.matchState.solved[t.id]?" done":(drill.matchState.missed[t.id]?" miss":"");
+      h+='<button class="mitem'+st+'" data-d="'+t.id+'"'+(drill.matchState.solved[t.id]?" disabled":"")+'>'+esc(t.def.length>150?t.def.slice(0,147)+"…":t.def)+'</button>';
+    });
+    h+='</div></div>';
+  } else if(drill.mode==="conf"){
+    var c=drill.q.conf;
+    h+='<div class="prompt"><span class="q">'+esc(c.title)+'</span>'+drill.q.clue+'</div><div class="opts">';
+    c.sides.forEach(function(s,i){ h+='<button class="opt" data-c="'+i+'">'+esc(s.h)+'</button>'; });
+    h+='</div>';
+  }
+  h+='<div id="verdict"></div>';
+  if(drill.q) h+='<div style="margin-top:16px;display:flex;gap:8px;flex-wrap:wrap"><button class="btn ghost" id="next">Next question</button></div>';
+  h+='<div class="scoreline"><span>This session <b>'+drill.right+'</b> / <b>'+drill.total+'</b></span>'+
+     '<span>Terms seen <b>'+Object.keys(S.seen).length+'</b> / '+T.length+'</span></div></div>';
+  return h;
+}
+function wireDrill(){
+  document.querySelectorAll(".mode").forEach(function(b){
+    b.onclick=function(){ drill.mode=b.dataset.m; drill.q=null; renderMain(); };
+  });
+  var ps=document.getElementById("poolsel");
+  if(ps) ps.onchange=function(){ drill.pool=ps.value; drill.q=null; renderMain(); };
+  var st=document.getElementById("start"); if(st) st.onclick=newQuestion;
+  var nx=document.getElementById("next"); if(nx) nx.onclick=newQuestion;
+  var v=document.getElementById("verdict");
+
+  if(drill.mode==="mc"&&drill.q){
+    document.querySelectorAll(".opt").forEach(function(b){
+      b.onclick=function(){
+        if(drill.answered) return; drill.answered=true;
+        var chosen=drill.q.opts[+b.dataset.i], ok=chosen.id===drill.q.t.id;
+        mark(drill.q.t.id,ok);
+        document.querySelectorAll(".opt").forEach(function(x,i){
+          x.disabled=true;
+          if(drill.q.opts[i].id===drill.q.t.id) x.classList.add("right");
+          else if(x===b) x.classList.add("wrong");
+        });
+        v.innerHTML='<div class="verdict '+(ok?"ok":"no")+'">'+(ok?"Correct.":"Not quite.")+
+          '<span class="ans"><b>'+esc(drill.q.t.term)+'</b> — '+esc(drill.q.t.def)+'</span></div>';
+        renderNav();
+      };
+    });
+  }
+  if(drill.mode==="fib"&&drill.q){
+    var inp=document.getElementById("fibin"), go=document.getElementById("fibgo");
+    var check=function(){
+      if(drill.answered) return; drill.answered=true;
+      var ok=answerOK(inp.value,drill.q.t.term);
+      mark(drill.q.t.id,ok); inp.disabled=true; go.disabled=true;
+      v.innerHTML='<div class="verdict '+(ok?"ok":"no")+'">'+(ok?"Correct.":"The answer was:")+
+        '<span class="ans"><b>'+esc(drill.q.t.term)+'</b></span></div>';
+      renderNav();
+    };
+    if(go) go.onclick=check;
+    if(inp){ inp.onkeydown=function(e){ if(e.key==="Enter") check(); }; inp.focus(); }
+  }
+  if(drill.mode==="match"&&drill.q){
+    var ms=drill.matchState;
+    document.querySelectorAll("[data-t]").forEach(function(b){
+      b.onclick=function(){ ms.sel=(ms.sel===b.dataset.t?null:b.dataset.t); renderMain(); };
+    });
+    document.querySelectorAll("[data-d]").forEach(function(b){
+      b.onclick=function(){
+        if(!ms.sel) return;
+        var ok=(ms.sel===b.dataset.d);
+        mark(ms.sel,ok);
+        if(ok){ ms.solved[ms.sel]=true; ms.missed[b.dataset.d]=false; }
+        else { ms.missed[b.dataset.d]=true; }
+        ms.sel=null;
+        renderMain(); renderNav();
+      };
+    });
+    if(Object.keys(ms.solved).length===drill.q.items.length && drill.q.items.length){
+      v.innerHTML='<div class="verdict ok">All five matched.</div>';
+    }
+  }
+  if(drill.mode==="conf"&&drill.q){
+    document.querySelectorAll("[data-c]").forEach(function(b){
+      b.onclick=function(){
+        if(drill.answered) return; drill.answered=true;
+        var ok=(+b.dataset.c===drill.q.side);
+        drill.total++; if(ok) drill.right++;
+        document.querySelectorAll("[data-c]").forEach(function(x,i){
+          x.disabled=true;
+          if(i===drill.q.side) x.classList.add("right"); else if(x===b) x.classList.add("wrong");
+        });
+        v.innerHTML='<div class="verdict '+(ok?"ok":"no")+'">'+(ok?"Correct.":"No — that is the other one.")+
+          '<span class="ans">'+drill.q.conf.tell+'</span></div>';
+      };
+    });
+  }
+}
+
+/* ===================== MAIN RENDER ===================== */
+function renderMain(){
+  var m=document.getElementById("main"), h="";
+  if(view==="plan"){
+    var done=PLAN.filter(function(p){return S.plan[p[0]];}).length;
+    var ti=todayISO();
+    h=head("14 days · 22 Sept → 6 Oct","The plan",
+      "Chapters 2 and 3 are paced to be <b>finished by 1 October</b>, not the 6th — you told me more chapters are coming, and they will need somewhere to land. The last days are for cumulative work.")+
+      '<div class="wrap"><div class="planbar"><div class="meter"><i style="width:'+(done/PLAN.length*100)+'%"></i></div>'+
+      '<span style="font-family:var(--mono);font-size:12px;color:var(--muted)">'+done+' of '+PLAN.length+' done</span></div>';
+    PLAN.forEach(function(p){
+      var f=fmtDate(p[0]), isDone=!!S.plan[p[0]];
+      h+='<label class="day'+(isDone?" done":"")+(p[0]===ti?" today":"")+'">'+
+         '<input type="checkbox" id="plan-'+p[0]+'" data-d="'+p[0]+'"'+(isDone?" checked":"")+'>'+
+         '<span class="dt"><b>'+f.dow+'</b>'+f.md+'</span>'+
+         '<span class="task"><b>'+esc(p[1])+'</b><span>'+esc(p[2])+'</span></span></label>';
+    });
+    var ef=fmtDate("2026-10-06");
+    h+='<div class="day exam"><span></span><span class="dt"><b>'+ef.dow+'</b>'+ef.md+'</span>'+
+       '<span class="task"><b>Exam</b><span>Chapters 2 and 3 plus whatever else you add between now and then.</span></span></div>';
+    h+='<p class="savenote">Progress saves automatically.</p></div>';
+  }
+  else if(view==="drill"){
+    h=head("Retrieval practice","Drill",
+      "Four formats. Three of them are the three formats on your exam; the fourth drills the pairs that blur. Questions are weighted toward what you have missed before.")+
+      '<div class="wrap">'+drillBody()+'</div>';
+  }
+  else if(view==="weak"){
+    var w=T.filter(function(t){return (S.missed[t.id]||0)>0;})
+           .sort(function(a,b){return (S.missed[b.id]||0)-(S.missed[a.id]||0);});
+    var max=w.length?(S.missed[w[0].id]||1):1;
+    h=head("What keeps catching you","Weak spots",
+      "Every term you have missed, most-missed first. Getting one right in a drill takes it down a notch; getting it right enough times clears it.")+'<div class="wrap">';
+    if(!w.length){
+      h+='<div class="empty">Nothing here yet. Run a drill and the terms you miss will collect here.</div>';
+    } else {
+      h+='<div class="weak">';
+      w.forEach(function(t){
+        h+='<div class="weakrow"><span class="t">'+esc(t.term)+'</span>'+
+           '<span class="bar"><i style="width:'+((S.missed[t.id]/max)*100)+'%"></i></span>'+
+           '<span class="c">'+S.missed[t.id]+'×</span></div>';
+      });
+      h+='</div><div style="margin-top:16px"><button class="btn" id="drillweak">Drill these</button></div>';
+    }
+    h+='</div>';
+  }
+  else if(view==="ch2"){
+    h=head("Chapter 2 · Communication within the Nervous System","Every blank, filled",
+      "Your professor's outline structure exactly, with each blank completed in Garrett &amp; Hough's wording. Figure and table numbers are your professor's 7e references; where your 6e differs, the 6e location is in brackets.")+
+      '<div class="wrap">'+renderOutline(OUT2)+'</div>';
+  }
+  else if(view==="ch3"){
+    h=head("Chapter 3 · The Organization and Functions of the Nervous System","Every blank, filled",
+      "Seventeen of this chapter's forty-two slides were built by your professor rather than the publisher. Those are marked — they are the best signal you have about what this exam cares about.")+
+      '<div class="wrap">'+renderOutline(OUT3)+'</div>';
+  }
+  else if(view==="conf"){
+    h=head("Thirteen pairs that blur","Confusions",
+      "You said all of them, so here are all of them — studied against each other rather than separately, which is the only way interference actually comes apart.")+'<div class="wrap">';
+    CONF.forEach(function(c){
+      h+='<article class="conf"><header><h3>'+esc(c.title)+'</h3><span class="why">'+esc(c.why)+'</span></header><div class="split">';
+      c.sides.forEach(function(s){
+        h+='<div class="side '+s.c+'"><h4>'+esc(s.h)+'</h4><ul>'+s.p.map(function(p){return "<li>"+p+"</li>";}).join("")+'</ul></div>';
+      });
+      h+='</div><div class="tell"><b>The tell</b>'+c.tell+'</div></article>';
+    });
+    h+='</div>';
+  }
+  else if(view==="tables"){
+    h=head("Reference","Master tables",
+      "The two consolidated structure-to-function tables are your professor's own work, not the publisher's. For a matching exam they are the closest thing you have to the answer key.")+
+      '<div class="wrap wide">'+TABLES.map(renderTable).join("")+'</div>';
+  }
+  else if(view==="fixes"){
+    h=head("Reference","Corrections",
+      "Errors and edition gaps I found while building this. None of them are your fault; all of them will waste your time if you hit them cold.")+'<div class="wrap">';
+    h+='<div class="callout exc"><h4>Your textbook is one edition behind your course</h4>'+
+       'Your slides carry the footer <i>Garrett, Brain &amp; Behavior, 7e</i>. The EPUB you have is the <b>6th edition (2021)</b>. Your professor\'s outline references match the 7e exactly, so their numbering is right and your book is the outlier. You said you can\'t get the 7e — you don\'t need to. The structure and numbering come from the outlines and slides; the 6e still gives you every definition.</div>';
+    [["Fig. 12.13, 12.14, 12.17 <span class='chip ref'>Ch 2 outline</span>","Typos for <b>2.13, 2.14, 2.17</b>. Chapter 12 is Learning and Memory — its Fig. 12.13 is retention in αCaMKII-deficient mice. The Chapter 2 versions are Loewi's experiment, calcium entry and vesicle fusion, and spatial/temporal summation."],
+     ["“Midbrain — Slide 7” <span class='chip ref'>Ch 3 outline</span>","Slide 7 is an unlabelled brain-stem image with no text on it. The midbrain material — tectum, tegmentum, colliculi, substantia nigra, VTA, PAG, red nucleus — is on <b>slide 20</b>."],
+     ["Table 2.3 <span class='chip ref'>Ch 2 outline</span>","Correct in the 7e. In your 6e there is no Table 2.3 — the twelve transmitters are <b>Table 2.2, p. 40</b>."],
+     ["Spinal Cord, pg. 79–80","Your 6e: <b>pp. 66–68</b>."],
+     ["Stages of Development, pg. 85–88","Your 6e: <b>pp. 72–76</b>."],
+     ["Experience Modifies the NS, pg. 88–89","Your 6e: <b>pp. 76–78</b>."],
+     ["Damage and Recovery, pg. 89–97","Your 6e: <b>pp. 78–85</b>. Chapter 3 ends at p. 89 in your edition, so the outline's range runs off the end of the chapter."],
+     ["Ventricles, Fig. 3.16","Correct in the 7e. In your 6e, Fig. 3.16 is the brain stem."],
+     ["Cranial nerves, Fig. 3.22","Correct in the 7e. In your 6e, Fig. 3.22 is the autonomic nervous system."],
+     ["Lorenzo &amp; Hecht, Fig. 2.24","Correct in the 7e. In your 6e it is <b>Fig. 2.23</b>."],
+     ["“Statacoustic” nerve <span class='chip prof'>slide 25</span>","Your professor's term for cranial nerve VIII. Standard name: <b>vestibulocochlear</b> (or auditory). Write theirs on the exam."],
+     ["“Afferent” / “efferent”","Neither word appears in your 6e's chapters 2 or 3. Both are in your outline and on slide 26 — 7e or instructor vocabulary. Learn them; don't go looking in the book."],
+     ["“Phospholipid bilayer”","Your outline specifies a hydrophilic phosphate head and two hydrophobic fatty-acid tails. Your 6e only says the membrane is “made up of lipid (fat) and protein.” The detailed chemistry is 7e or instructor wording."]
+    ].forEach(function(f){
+      h+='<div class="fixrow"><div><div class="h">As written</div><div class="v">'+f[0]+'</div></div>'+
+         '<div><div class="h">What’s true</div><div class="v">'+f[1]+'</div></div></div>';
+    });
+    h+='<div class="callout"><h4>Two slides I could not read</h4>Chapter 2 slides 8 (Types of Glial Cells) and 19 (Representative Neurotransmitters) are flat images with no text layer. I filled both sections from your textbook instead — the glial types from the chapter prose, the transmitters from the table above. If your professor put anything extra on those two slides, it is the one thing here I could not check.</div>';
+    h+='</div>';
+  }
+  m.innerHTML=h;
+
+  if(view==="plan"){
+    m.querySelectorAll("input[type=checkbox]").forEach(function(c){
+      c.onchange=function(){ S.plan[c.dataset.d]=c.checked; save(); renderMain(); renderNav(); };
+    });
+  }
+  if(view==="drill") wireDrill();
+  if(view==="weak"){
+    var dw=document.getElementById("drillweak");
+    if(dw) dw.onclick=function(){ view="drill"; drill.pool="weak"; drill.mode="fib"; drill.q=null; render(); newQuestion(); };
+  }
+}
+function render(){ renderNav(); renderMain(); }
+</script>

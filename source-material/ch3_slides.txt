@@ -1,0 +1,511 @@
+
+===== SLIDE 1 =====
+Chapter 3: The Organization & Functions of the Nervous System
+
+===== SLIDE 2 =====
+Table 3.1: Terms for Groups of Axons and
+Cell Bodies
+in the
+Nervous System
+Author, Title, Edition. (c) 20XX Sage Publishing.
+2
+
+===== SLIDE 3 =====
+Figure 3.3: The Brain Develops From the Neural Tube
+Garrett, Brain & Behavior, 7e. © 2027 Sage Publishing.
+3
+
+===== SLIDE 4 =====
+Figure 3.16
+The Ventricles
+Garrett, Brain & Behavior, 7e. © 2026 Sage Publishing.
+4
+
+===== SLIDE 5 =====
+Protecting
+the Central Nervous System
+Figure 3.20:
+The Blood–Brain Barrier
+
+===== SLIDE 6 =====
+Figure 3.13: Sagittal View of the Interior Features of the Human Brain
+Garrett, Brain & Behavior, 7e. © 2026 Sage Publishing.
+6
+
+===== SLIDE 7 =====
+Structures of
+the Brain Stem
+7
+
+===== SLIDE 8 =====
+Garrett, Brain & Behavior, 7e. © 2027 Sage Publishing.
+8
+Figure 3.9: Terms Used to Indicate Direction and Orientation in the Nervous System
+
+===== SLIDE 9 =====
+Figure 3.4:
+The Cerebral Hemispheres and Longitudinal Fissure
+Garrett, Brain & Behavior, 7e. © 2026 Sage Publishing.
+9
+
+===== SLIDE 10 =====
+Figure 3.7: Brains of Three Different Mammals
+Source:
+Reproduced with permission from http://www.brains.rad.msu.edu, and http://brainmuseum.org,
+supported by the U.S. National Science Foundation.
+Garrett, Brain & Behavior, 7e. © 2026 Sage Publishing.
+10
+
+===== SLIDE 11 =====
+Figure 3.5: Section of Human Brain Showing Gyri, Sulci, and Fissures
+Source:
+Reproduced with permission from http://www.brains.rad.msu.edu, and http://brainmuseum.org, supported by the U.S. National Science Foundation.
+Garrett, Brain & Behavior, 7e. © 2026 Sage Publishing.
+11
+
+===== SLIDE 12 =====
+Figure 3.6: Layers (i.e., Laminae) & Columns of the Cortex
+Garrett, Brain & Behavior, 7e. © 2026 Sage Publishing.
+12
+
+===== SLIDE 13 =====
+Figure 3.8: Lobes and Functional Areas on the Surface of the Cerebral  Hemispheres
+Garrett, Brain & Behavior, 7e. © 2026 Sage Publishing.
+13
+
+===== SLIDE 14 =====
+Frontal Lobes
+Primary motor cortex
+(precentral gyrus).
+Mainly in charge of contralateral control of fine, voluntary movements
+Organized topographically in a homunculus (Slide 15)
+Prefrontal cortex
+Receives info from all sensory systems
+Involved in working memory, planning and organization of behavior, decision making, adjusting behavior in response to its consequences, and planning how to achieve goals
+Damage here can result in severe cognitive and behavioral impairments
+Broca’s area
+Controls speech production and the motor control involved in speech (via the motor cortex).
+Damage here results in difficulty
+producing
+both speech and writing (i.e., Broca’s aphasia).
+Author, Title, Edition. (c) 20XX Sage Publishing.
+14
+
+===== SLIDE 15 =====
+Homunculi:
+the Primary Motor Cortex and
+the Primary Somatosensory Cortex
+Garrett, Brain & Behavior, 7e. © 2027 Sage Publishing.
+15
+
+===== SLIDE 16 =====
+Parietal Lobes
+16
+--- SMARTART ---
+Association Areas
+processes sensory information that inform about body position & movement (i.e., from muscle-stretch receptors & joint receptors)
+Damage to the posterior parietal cortex can produce
+neglect
+, a disorder in which the person ignores objects, people, and activity on the side opposite of the damage
+Primary Somatosensory Cortex
+(Postcentral Gyrus)
+Also organized topographically as a homunculus
+Processes the skin senses (touch, warmth, cold, pain)
+
+===== SLIDE 17 =====
+Temporal Lobes
+Garrett & Hough (2025)
+17
+--- SMARTART ---
+Wernicke’s Area
+Association area that interprets language input. When damaged, the person has trouble in
+understanding
+speech or writing
+(
+Wernicke’s aphasia
+)
+Inferior Temporal Cortex
+Plays a major role in the visual identification of objects
+Primary Auditory Cortex
+Receives & processes sound information from both ears
+
+===== SLIDE 18 =====
+Occipital Lobes
+Garrett, Brain & Behavior, 7e. © 2026 Sage Publishing.
+18
+--- SMARTART ---
+Primary Visual Cortex
+Where visual information is processed
+Contains a retinotopic map of visual space
+Receives info from the thalamus, and projects info to the posterior tips of the other lobes
+Four Association Areas
+Located anterior to the primary visual cortex
+These detect individual components of a scene, (e.g., color, movement, and form)
+
+===== SLIDE 19 =====
+19
+FOREBRAIN STRUCTURES AND THE FUNCTIONS
+Basal Ganglia
+Voluntary movement, emotional expression, habit formation, and  reward
+(caudate, putamen, globus pallidus, and nucleus accumbens)
+Limbic System
+Memory formation and emotional responses
+Hippocampus
+Learning and LTM memory consolidation.
+Amygdala
+Emotionally-motivated behavior and emotional processing
+Cingulate Gyrus
+Emotional processing and behavioral regulation
+Olfactory System
+Processing the sense of smell (olfactory bulb and tracts)
+Cerebral Cortex
+Highest level information processing
+Frontal Lobes
+Primary Motor Cortex
+Contralateral control of fine, voluntary movements
+Prefrontal Cortex
+Higher-order cognitive functions, emotional & behavioral regulation
+Broca’s Area
+Speech production and the motor control involved in speech
+Parietal Lobes
+Somatosensory Cortex
+Skin senses (touch, warmth, cold, pain)
+Association Areas
+Sensory information about body position and movement
+Temporal Lobes
+Primary Auditory Cortex
+Sensory information about sound from both ears
+Wernicke’s Area
+Speech comprehension
+Inferior Temporal Cortex
+Visual Identification of objects
+Occipital Lobes
+Primary Visual Cortex
+Sensory information about visual stimuli
+Association Areas
+Information about components of a visual scene (e.g., color, form)
+Thalamus
+Relay and integration of incoming sensory and motor information
+Hypothalamus
+Motivated behaviors, autonomic nervous system, endocrine system
+Pituitary Gland
+“Master gland” of the endocrine system
+Pineal Gland
+Circadian and seasonal rhythms, release of melatonin
+Corpus Callosum
+Communication between the hemispheres
+Anterior Commissure
+Communication between the hemispheres
+Ventricles
+Cushion the brain, reservoir for hormones and nutrients, transport of waste
+
+===== SLIDE 20 =====
+20
+MIDBRAIN STRUCTURES AND THEIR FUNCTIONS
+Tectum
+Superior Colliculus
+Visual processing and eye movements
+Inferior Colliculus
+Auditory processing and sound localization
+Tegmentum
+Substantia Nigra
+Planning movement, reward and motor coordination
+Ventral Tegmental Area
+Reward, motivation and addiction
+Periaqueductal Grey (PAG)
+Pain modulation and autonomic survival behaviors
+Red Nucleus
+Muscle tone and limb movements
+Reticular Formation
+Sleep-wake cycle, alertness, and general arousal of the brain
+HINDBRAIN STRUCTURES AND THEIR FUNCTIONS
+Medulla
+Vital life processes (breathing, heart rate, emesis swallowing)
+Pons
+Reflexes, muscle tone, selective attention, sleep. arousal of the brain
+Cerebellum
+Refining movements for speed intensity and direction, sensory processing needed for movement, automated movement patterns
+
+===== SLIDE 21 =====
+The Spinal Cord
+The
+spinal cord
+is a finger-sized cable of neurons that carries commands from the brain to the muscles and organs, and sensory information into the brain.
+The central canal inside the spinal cord circulates
+cerebrospinal fluid
+down its axis.
+Sensory neurons enter the spinal cord through the
+dorsal root
+of each spinal nerve.
+The cell bodies of motor neurons are located in the ventral horns.
+The axons of the motor neurons pass out of the spinal cord through the
+ventral root
+.
+Reflexes
+can originate in the spinal cord.
+They are simple, automatic movements in response to a sensory stimulus.
+Garrett, Brain & Behavior, 7e. © 2026 Sage Publishing.
+21
+
+===== SLIDE 22 =====
+Figure 3.18: Spinal Cord Vertebral Column Anatomy
+Source
+: Carolina
+Hrejsa
+/Body Scientific Intl.
+Garrett, Brain & Behavior, 7e. © 2026 Sage Publishing.
+22
+
+===== SLIDE 23 =====
+Figure 3.19: Horizontal Cross Section of the Spinal Cord
+(With Reflex Circuit)
+Garrett, Brain & Behavior, 7e. © 2026 Sage Publishing.
+23
+
+===== SLIDE 24 =====
+Figure 3.22: Ventral View of the Brain Showing the Cranial Nerves and Their Major Functions
+Source:
+Encyclopaedia
+Britannica/ Contributor/ Universal Images Group/Getty
+Garrett, Brain & Behavior, 7e. © 2027 Sage Publishing.
+24
+
+===== SLIDE 25 =====
+The 12 Cranial Nerves
+25
+The 12 Cranial Nerves
+Number and Name
+Function of Sensory Component
+Function of Motor Component
+Olfactory
+Smell
+(No motor nerve)
+Optic
+Vision
+(No motor nerve)
+Oculomotor
+Sensation from eye muscles
+Eye movements, pupil constriction
+Trochlear
+Sensation from eye muscles
+Eye movements
+Trigeminal
+Sensation from skin of face, nose and mouth
+Chewing, swallowing
+Abducens
+Sensations from eye muscles
+Eye movements
+Facial
+Taste from anterior two thirds of tongue, visceral sensation from head
+Facial expressions, crying, salivation, & dilation of blood vessels in head
+Statacoustic
+Hearing, equilibrium
+(No motor nerve)
+Glossopharyngeal
+Taste & other sensation from throat and posterior third of tongue
+Swallowing, salivation, dilation of blood vessels
+Vagus
+Taste and sensation from neck, thorax and abdomen
+Swallowing, control of larynx, parasympathetic nerves to heart and viscera
+Accessory
+(No sensory nerve)
+Movements of shoulders and head, parasympathetic nerves to viscera
+Hypoglossal
+Sensation from tongue muscles
+Movement of tongue
+
+===== SLIDE 26 =====
+Spinal Nerves and the Somatic Nervous System
+Sensory Input
+: Afferent fibers carry touch, temperature, and pain from skin, muscles, and joints to the spinal cord
+Motor Output
+: Efferent fibers carry commands from the central nervous system to contract skeletal muscles for voluntary movement
+Mediate the
+reflex arc
+with the spinal cord
+
+===== SLIDE 27 =====
+Figure 3.23:
+The Autonomic Nervous System (ANS)
+Garrett, Brain & Behavior, 7e. © 2026 Sage Publishing.
+27
+
+===== SLIDE 28 =====
+Stages of Nervous System Development
+Author, Title, Edition. (c) 20XX Sage Publishing.
+28
+
+===== SLIDE 29 =====
+Stages of Development in the Nervous System
+The nervous system begins development when the surface of the embryo forms a
+neural groove
+, which curls into the
+neural tube
+.
+Development of the nervous system then proceeds in four distinct stages:
+cell proliferation
+cell migration
+circuit formation
+circuit pruning
+29
+
+===== SLIDE 30 =====
+Cell Proliferation
+During
+proliferation
+, the immature cells that will become neurons divide and multiply at the rate of 250,000 new cells every minute.
+Proliferation occurs in the ventricular zone, the area surrounding the hollow tube that will later become the ventricles and the central canal.
+Garrett, Brain & Behavior, 7e. © 2026 Sage Publishing.
+30
+
+===== SLIDE 31 =====
+Cell
+Migration
+During
+migration
+, newly formed neurons move from the ventricular zone to their final location.
+Most of them move perpendicularly from the ventricular surface using specialized
+radial glial cells
+.
+An overabundance of neurons migrating into the cortical layers causes it to start wrinkling and developing the sulci and gyri seen in the adult brain.
+Neurons retain considerable flexibility to become a wide variety of neurons into early infancy (called
+stem cells
+)
+.
+31
+Source:
+Adapted from illustration by Lydia
+Kibiuk
+, ©1995
+
+===== SLIDE 32 =====
+Circuit Formation
+During
+circuit formation
+, the axons of developing neurons grow toward their target cells and form functional connections.
+To find their way, axons form
+growth cones
+at their tip.
+These sample the environment for directional cues.
+Chemical and molecular signposts across the brain either attract or repel the advancing growth cone, guiding it along its way.
+The path of the developing axon’s destination is not necessarily direct, but it is able to make direction changes along the way by changing genetic control.
+Garrett, Brain & Behavior, 7e. © 2026 Sage Publishing.
+32
+
+===== SLIDE 33 =====
+Circuit
+Pruning
+Circuit pruning
+involves the elimination of excess neurons and synapses.
+The nervous system refines its organization and corrects errors by eliminating large numbers of excessive synapses.
+Synapses are strengthened or weakened depending on whether the presynaptic neuron and the postsynaptic neuron fire together.
+The postsynaptic neuron sends feedback to the presynaptic terminals in the form of
+neurotrophins
+, chemicals that enhance the development and survival of synapses.
+In the visual system, the
+plasticity
+(ability to be modified) of synapses decreases.
+Garrett, Brain & Behavior, 7e. © 2026 Sage Publishing.
+33
+
+===== SLIDE 34 =====
+Myelination
+Myelination is an additional step required for full maturation of the nervous system.
+It begins with the lower structures in the brain and then proceeds to the cerebral hemispheres, moving from occipital lobes to frontal lobes.
+Myelination starts around the end of the third trimester of fetal development but is not complete until late adolescence or beyond.
+This slow process has behavioral implications.
+Garrett, Brain & Behavior, 7e. © 2026 Sage Publishing.
+34
+
+===== SLIDE 35 =====
+How Experience Modifies the Nervous System
+Author, Title, Edition. (c) 20XX Sage Publishing.
+35
+
+===== SLIDE 36 =====
+How Experience Modifies the Nervous System
+Stimulation continues to shape synaptic construction and reconstruction throughout the individual’s life.
+Humans lose neurons as they age, but they develop more synapses, presumably as the result of experience.
+Experience-induced change can involve
+reorganization
+, a shift in connections that changes the function of an area of the brain.
+The
+doctrine of specific nerve energies
+claims that each sensory projection area produces its own unique experience regardless of the kind of stimulation it receives.
+36
+Figure 3.29: Changes in the Somatosensory Area Following Surgery for Syndactyly
+Source:
+Mogilner, A. et al. (1993). Somatosensory cortical plasticity in adult humans revealed by magnetoencephalography
+Proceedings of the National Academy of Sciences
+,
+90
+, 3593–3597.
+https://doi.org/10.1073/pnas.90.8.3593
+
+===== SLIDE 37 =====
+Damage and Recovery of the Nervous System
+Author, Title, Edition. (c) 20XX Sage Publishing.
+37
+
+===== SLIDE 38 =====
+Damage and Recovery in the Central Nervous System
+Brain disorders create suffering and staggering financial costs.
+Stroke
+, also known as a cerebrovascular accident, is caused by a loss of blood flow in the brain.
+Most of the damage is due to excitotoxicity, when dying neurons release excess glutamate, which overstimulates the surrounding neurons.
+The neurons then die as large amounts of calcium enter the cells.
+Traumatic brain injury (TBI)
+is caused by an external mechanical force.
+Mild traumatic injury, or concussion, is the most common TBI.
+Garrett, Brain & Behavior, 7e. © 2026 Sage Publishing.
+38
+
+===== SLIDE 39 =====
+Table 3.3: Annual Costs of Brain Damage and Disorders
+
+===== SLIDE 40 =====
+Limitations on Recovery
+Regeneration
+, the growth of severed axons, occurs in the PNS.
+Injuries to CNS connections are permanent.
+Injury leads to glial cell death and regrowth blockade through inflammatory processes.
+The nervous system could also repair itself by
+neurogenesis
+, the birth of new neurons.
+It is most extensive in the hippocampus and near the lateral ventricles, supplying the olfactory bulb.
+Research suggests that if we could enhance neurogenesis, it might provide a means of self-repair for the brain.
+Garrett, Brain & Behavior, 7e. © 2026 Sage Publishing.
+40
+
+===== SLIDE 41 =====
+Compensation and Reorganization
+Garrett, Brain & Behavior, 7e. © 2026 Sage Publishing.
+41
+--- SMARTART ---
+The simplest neural recovery involves
+compensation.
+This is a process in which uninjured tissue takes over the functions of lost neurons.
+Normally, silent side branches from other neurons in the area become active within minutes of the injury.
+A more dramatic form of neural recovery involves
+reorganization
+of other brain areas.
+Functions previously performed by damaged areas can be assumed by nearby brain areas or, in the case of massive damage, by the other hemisphere
+
+===== SLIDE 42 =====
+Possibilities for CNS Repair
+Scientists are pursuing strategies for inducing self-repair.
+These efforts include minimizing the initial damage, encouraging regrowth and new connections, and replacing lost neurons.
+Strategies for encouraging axon regrowth are being pursued.
+One option is to block receptors for the protein Nogo-A, which inhibits regeneration following injury.
+Using
+stem cells
+to replace injured neurons is another option.
+Stem cells are undifferentiated cells that can develop into specialized cells.
+Stem cells in the embryo are
+pluripotent
+, so they can differentiate into any cell in the body.
+Neural stem cells are
+multipotent
+, meaning they can differentiate into any neuron and glial cells.
+Garrett, Brain & Behavior, 7e. © 2026 Sage Publishing.
+42

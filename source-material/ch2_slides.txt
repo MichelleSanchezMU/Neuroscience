@@ -1,0 +1,162 @@
+
+===== SLIDE 1 =====
+Chapter 2: Communication within the Nervous System
+
+===== SLIDE 2 =====
+Neurons
+Garrett, Brain & Behavior, 7e. © 2027 Sage Publishing.
+2
+--- SMARTART ---
+Neurons
+convey sensory information to the brain.
+They carry out the operations involved in thought, feeling, and action.
+They also transmit commands out to the body.
+These control muscles and organs.
+
+===== SLIDE 3 =====
+Figure 2.1: Estimated Numbers of Neurons in the Brain and Spinal Cord
+Garrett, Brain & Behavior, 7e. © 2027 Sage Publishing.
+3
+
+===== SLIDE 4 =====
+Figure 2.3: Components of a Neuron
+The illustration is of a multipolar motor neuron.
+Garrett, Brain & Behavior, 7e. © 2027 Sage Publishing.
+4
+
+===== SLIDE 5 =====
+Figure 2.4: Sensory Neurons and an Interneuron
+Source
+: Carolina
+Hrejsa
+/Body Scientific Intl.
+Garrett, Brain & Behavior, 7e. © 2027 Sage Publishing.
+5
+
+===== SLIDE 6 =====
+Table 2.1
+The Major Types of Neurons
+Garrett, Brain & Behavior, 7e. © 2027 Sage Publishing.
+6
+
+===== SLIDE 7 =====
+Figure 2.2: Cell Body (Soma) of a Neuron
+Part of the membrane has been removed to show interior features. The different types of organelles have unique colors.
+Garrett, Brain & Behavior, 7e. © 2027 Sage Publishing.
+7
+
+===== SLIDE 8 =====
+Types of
+Glial Cells
+Garrett, Brain & Behavior, 7e. © 2027 Sage Publishing.
+8
+
+===== SLIDE 9 =====
+Figure 2.5: Cross Section of the Cell Membrane of a Neuron
+Notice how the lipid molecules form the membrane by orienting their heads toward the extracellular and intracellular fluids.
+Garrett, Brain & Behavior, 7e. © 2027 Sage Publishing.
+9
+
+===== SLIDE 10 =====
+Figure 2.7: Distribution of Ions Inside and Outside the Resting Neuron
+Garrett, Brain & Behavior, 7e. © 2027 Sage Publishing.
+10
+
+===== SLIDE 11 =====
+Figure 2.8: Ion Movement and Voltages During an Action Potential
+Garrett, Brain & Behavior, 7e. © 2027 Sage Publishing.
+11
+
+===== SLIDE 12 =====
+Myelination and Conduction Speed in the CNS and PNS
+Figure 2.9: Oligodendrocytes Produce Myelin for Axons in the CNS; Schwann cells Produce Myelin for Axons in the PNS
+Garrett, Brain & Behavior, 7e. © 2027 Sage Publishing.
+12
+
+===== SLIDE 13 =====
+Figure 2.12: The Synapse Between a Presynaptic Neuron and a Postsynaptic Neuron
+Garrett, Brain & Behavior, 7e. © 2027 Sage Publishing.
+13
+
+===== SLIDE 14 =====
+Figure 2.13: Loewi’s Experiment Demonstrating Chemical Transmission in Neurons
+Garrett, Brain & Behavior, 7e. © 2027 Sage Publishing.
+14
+
+===== SLIDE 15 =====
+Figure 2.14: A Presynaptic Terminal Releases Neurotransmitters at the Synapse, which then interact with receptors embedded in the post-synaptic membrane
+Garrett, Brain & Behavior, 7e. © 2027 Sage Publishing.
+15
+
+===== SLIDE 16 =====
+Figure 2.17: Spatial and Temporal Summation
+Graded potentials are combined at the axon hillock in two ways:
+Spatial summation
+combines graded potentials occurring simultaneously at different locations on the dendrites and cell body.
+Temporal summation
+combines graded potentials arriving a short time apart, from either the same or separate inputs.
+16
+
+===== SLIDE 17 =====
+Figure 2.20: Reuptake, Glial Absorption, and Enzymatic Inactivation
+Garrett, Brain & Behavior, 7e. © 2027 Sage Publishing.
+17
+
+===== SLIDE 18 =====
+Regulating Synaptic Activity
+Garrett, Brain & Behavior, 7e. © 2027 Sage Publishing.
+18
+--- SMARTART ---
+The synapses described so far are referred to as
+axodendritic
+and
+axosomatic
+synapses.
+Their terminals connect to dendrites and cell bodies.
+At
+axoaxonic
+synapses, a third neuron releases transmitter onto the terminals of the presynaptic neuron.
+The result is
+presynaptic excitation or presynaptic inhibition
+, which increases or decreases the presynaptic neuron’s release of neurotransmitter onto the postsynaptic neuron.
+Neurons also regulate their own synaptic activity in two ways.
+An autoreceptor on the presynaptic terminal senses the amount of transmitter in the cleft; if the amount is excessive, the presynaptic neuron reduces its output
+When there are unusual increases or decreases in neurotransmitter release, postsynaptic receptors change their sensitivity or even their numbers to compensate
+Glial cells also contribute to the regulation of synaptic activity.
+Surround the synapse and prevent neurotransmitter from spreading to other synapse
+Remove neurotransmitter from the synaptic cleft and recycle it for the neuron’s reuse
+
+===== SLIDE 19 =====
+Representative Neurotransmitters
+Garrett, Brain & Behavior, 7e. © 2027 Sage Publishing.
+19
+
+===== SLIDE 20 =====
+Figure 2.23: Neurotransmitter Corelease and
+Cotransmission
+Garrett, Brain & Behavior, 7e. © 2027 Sage Publishing.
+20
+
+===== SLIDE 21 =====
+Figure 2.24: Response of Rats to Neural Stimulation Simulating the Taste of Sucrose and Quinine
+(a) Recordings from individual neurons during stimulation with sucrose and quinine. (b) Electrical stimulation mimicking the recorded neuronal activity; each dot represents a signal neural impulse. (c) The average number of times the rats licked a drinking tube for water during delivery of the quinine simulation and the sucrose simulation.
+Garrett, Brain & Behavior, 7e. © 2027 Sage Publishing.
+21
+
+===== SLIDE 22 =====
+Interpreting Neural Information: Neural Codes
+Garrett, Brain & Behavior, 7e. © 2027 Sage Publishing.
+22
+--- SMARTART ---
+Neurons vary the intervals between spikes, producing bursts of varying lengths, and the bursts can be separated by different intervals.
+The brain uses these variations in firing patterns to form a code that is used to interpret input from the body and the world.
+However, this coding is not sufficient to carry the complex information involved in communication in the brain.
+
+===== SLIDE 23 =====
+Interpreting Neural Information: Neural Networks
+Neural networks
+are groups of neurons that function together to carry out more complex processes.
+Sometimes these networks involve a relatively small number of neurons in a localized area carrying out a single process (e.g., discriminating the color of objects).
+Sometimes these neural networks combine the activity of widespread brain areas to engage in more complex tasks (e.g., language processing, depth perception, consciousness).
+Garrett, Brain & Behavior, 7e. © 2027 Sage Publishing.
+23
