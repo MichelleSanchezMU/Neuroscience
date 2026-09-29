@@ -1,0 +1,246 @@
+
+===== SLIDE 1 =====
+Chapter 4: The
+Methods and Ethics
+of Research
+
+===== SLIDE 2 =====
+The Scientific Method
+2
+
+===== SLIDE 3 =====
+Figure 4.2: Correlational Versus Experimental Studies
+3
+
+===== SLIDE 4 =====
+Figure 4.3:
+Three Staining Techniques
+a. Golgi stains highlights random individual neurons
+b. Nissl stains identify cell bodied
+c. Myelin stains identify axons/neural pathways
+Garrett, Brain & Behavior, 7e. © 2027 Sage Publishing.
+4
+
+===== SLIDE 5 =====
+Figure 4.7: Scanning Electron Micrograph of a Neuron
+Garrett, Brain & Behavior, 7e. © 2027 Sage Publishing.
+5
+
+===== SLIDE 6 =====
+Electroencephalography (1)
+EEG detects the combined electrical activity of all the neurons b/t 2 electrodes placed on the scalp.
+Provides excellent temporal resolution, tracking the brain’s responses to rapidly changing events
+Provides relatively poor spatial resolution, imprecisely detecting where in the brain the signal is coming from.
+Garrett, Brain & Behavior, 7e. © 2027 Sage Publishing.
+6
+Figure 4.9: An Electroencephalograph and a Sample EEG
+
+===== SLIDE 7 =====
+Electroencephalography (2)
+Garrett, Brain & Behavior, 7e. © 2027 Sage Publishing.
+7
+--- SMARTART ---
+EEGs are most useful for detecting changes in arousal.
+They are not good at detecting the response to a brief stimulus due to the “noise” of other brain activities.
+
+===== SLIDE 8 =====
+Pairing EEG with Computer Applications
+Researchers can use computer to average the EEG over multiple presentations of a stimulus  to produce an event-related potential (ERP; Figure 4.10a).
+By comparing activity across multiple electrodes, we can generate images showing the locations of activity in the brain and, by adding color coding, the relative intensity of the activity (Figure 4.10b).
+Garrett, Brain & Behavior, 7e. © 2027 Sage Publishing.
+8
+
+===== SLIDE 9 =====
+Figure 4.11:
+A Coronal Plate From a Rat Brain Stereotaxic Atlas
+Garrett, Brain & Behavior, 7e. © 2027 Sage Publishing.
+9
+
+===== SLIDE 10 =====
+Figure 4.15:
+A Therapist Uses TMS With a Patient
+Garrett, Brain & Behavior, 7e. © 2027 Sage Publishing.
+10
+Source: “Using Magnets as a Depression Treatment,” Design News, October 11, 2010. http://www.designnews.com/document.asp?doc_id=229440.
+
+===== SLIDE 11 =====
+Computed Tomography
+Computed tomography (CT or CAT) takes a series of X-rays from different angles to generate a 3-D image.
+More dense structures show up as white on the screen, less dense structures show up as black.
+Imaging soft tissue, such as the brain, requires injecting a dye that will show up on an X-ray.
+A drawback of older models was the extreme slowness, but newer models create images in minutes.
+Garrett, Brain & Behavior, 7e. © 2027 Sage Publishing.
+11
+Figure 4.16: Computed Tomography Scanning Procedure
+
+===== SLIDE 12 =====
+Garrett, Brain & Behavior, 7e. © 2027 Sage Publishing.
+12
+Figure 4.17:
+Magnetic Resonance and Diffusion Tensor Images
+Source
+: WDCN/Univ. College London / Science Source.
+
+===== SLIDE 13 =====
+Figure 4.18: Positron Emission Tomography
+Garrett, Brain & Behavior, 7e. © 2027 Sage Publishing.
+13
+
+===== SLIDE 14 =====
+Figure 4.19:
+An fMRI Scan
+Garrett, Brain & Behavior, 7e. © 2027 Sage Publishing.
+14
+Source
+: Associated Press
+
+===== SLIDE 15 =====
+15
+
+===== SLIDE 16 =====
+Investigating Heritability
+Garrett, Brain & Behavior, 7e. © 2027 Sage Publishing.
+16
+--- SMARTART ---
+Prevalence
+: calculates the frequency (or percentage) of a given characteristic within a population.
+Correlational Approach
+:
+uses
+correlation to estimate heritability—the stronger the correlation, the greater the evidence for genetic influence on a trait
+Concordance Rate
+: calculates the percentage of pairs of individuals sharing a specific trait or disorder, given that one person in the pair already has it.
+Experimental Approach
+: uses genetic engineering to manipulate the structure or function of  an organism’s genes to observe its effects
+
+===== SLIDE 17 =====
+Author, Title, Edition. (c) 20XX Sage Publishing.
+17
+
+===== SLIDE 18 =====
+Calculating Pairwise Concordance Rate
+Author, Title, Edition. (c) 20XX Sage Publishing.
+18
+
+===== SLIDE 19 =====
+The
+knockout technique
+introduces a nonfunctioning mutation into an isolated gene; the altered gene is transferred to an embryo.
+The
+knockdown technique
+involves silencing a gene by interfering with its expression.
+One way is to use antisense RNA, a strand of RNA that is complementary to messenger RNA that binds to the mRNA and blocks the gene’s expression
+Artificial antisense RNA has shown therapeutic potential in treating cancers and viruses such as HIV, hepatitis B, and influenza.
+In
+gene transfer
+, a gene from a donor organism is inserted into the genetic material of a recipient’s cells. This embryo is then placed into a foster mother, where it develops and is born. Researchers observe the effects of the gene in the transgenic animals to determine the transferred gene’s function.
+Genetic Engineering: The Experimental Approach
+Garrett, Brain & Behavior, 7e. © 2027 Sage Publishing.
+19
+Genetic engineering
+involves manipulation of an organism’s gene structure or function
+
+===== SLIDE 20 =====
+Plagiarism and Fabrication in Research
+The two cardinal sins of research reporting are plagiarism and fabrication of data.
+Plagiarism
+is the theft of another’s work or ideas.
+Fabrication
+of results introduces erroneous information into the body of scientific knowledge.
+2% of researchers admit in surveys that they have falsified research at least once in their career.
+Garrett, Brain & Behavior, 7e. © 2027 Sage Publishing.
+20
+
+===== SLIDE 21 =====
+Key Ethical Issues in Human Research
+Garrett, Brain & Behavior, 7e. © 2027 Sage Publishing.
+21
+--- SMARTART ---
+Informed consent
+is required from all human study participants.
+Includes information about any risks, discomfort, or other adverse effects.
+Should not be coercive.
+Some studies require
+deception
+to be effective.
+Deception is acceptable only when the value of the study justifies it, alternative procedures are not available, and the individuals are correctly informed afterward.
+Some researchers argue deception is never justified.
+
+===== SLIDE 22 =====
+Key Ethical Issues in Animal Research
+Garrett, Brain & Behavior, 7e. © 2027 Sage Publishing.
+22
+--- SMARTART ---
+Because animals live in a controlled environment and have a homogeneous history of experience, a briefer development, and a shorter life span; they are useful for experimental research that cannot be ethically done w/humans.
+Animal research guidelines follow the “Three R’s”:
+Replacement.
+Reduction.
+Refinement.
+Many researchers argue that the distress that does occur in animals is justified by the benefits the research produces.
+Animal Care and Use Committees
+(
+ACUC’s
+) are federally mandated oversight group that evaluates and approves all research, teaching, and testing projects involving live animals
+
+===== SLIDE 23 =====
+Ethical Issues in Gene Therapy
+Garrett, Brain & Behavior, 7e. © 2027 Sage Publishing.
+23
+--- SMARTART ---
+Gene therapy has promise in correcting humanity’s greatest disabilities and deadly diseases, but there are ethical concerns.
+There already have been instances of harm and death resulting from experimental gene therapy (e.g., the death of 18-year-old Jesse Gelsinger as a direct result of gene research).
+Gene manipulation could affect reproductive cells and change the genome of future generations who were unable to give their consent.
+In addition to safety and consent
+iisues
+, there are concerns about how this technology will be used.
+As gene editing becomes more common, there may be mounting pressure to go beyond correcting disabilities and disease to enhancing beauty, intelligence, strength or other culturally desirable traits.
+There also is a concern that because gene therapy is very expensive, it is likely to increase inequalities further between the haves and have-nots in our society.
+Editing embryos for implantation in the mother currently is banned in most countries, but there is a risk of increase the pressure to use gene editing to reduce health risks in unborn children and improve their physical and mental performance
+
+===== SLIDE 24 =====
+Ethical Issues in Embryonic Stem Cell Therapy
+Garrett, Brain & Behavior, 7e. © 2027 Sage Publishing.
+24
+--- SMARTART ---
+Embryonic stem cells are undifferentiated cells that are
+pluripotent,
+or have the potential to develop into any type of body cell.
+Though most applications of stem cell therapy are still experimental, clinical trials have shown improvement with several conditions, including traumatic brain injury, spinal cord injury, stroke, macular degeneration, and multiple sclerosis
+One ethical concern is that scientists could
+create
+human embryos for research purposes, which is repugnant to some on moral grounds.
+Another concern is that
+extracting
+stem cells from an embryo destroys the embryo, so right-to-life advocates oppose using this source even though most of the embryos are “left over” from fertility treatments and would otherwise be discarded
+Another concern is that some clinics offer treatments for a wide range of medical problems beyond what the FDA has approved.
+
+===== SLIDE 25 =====
+Alternatives to Embryonic Stem Cells
+Garrett & Hough (2025)
+25
+Because of the controversy and the limited availability of embryonic stem cells, researchers are looking for other sources.
+--- SMARTART ---
+Adult
+Stem Cells
+Adult stem cells normally only can mature into the kind of cells where they are located (e.g., areas that frequent cell replacement like bone marrow and skin). Fortunately, these can be turned into embryonic-like,
+induced pluripotent stem cells
+by increasing the expression of their genes
+Perinatal Stem Cells
+Stem cells from the amniotic fluid, placenta, and umbilical cord can be obtained after a baby is born from tissue that would otherwise be discarded after a pregnancy. Perinatal stem cells such as these are possible sources for novel treatments for cerebral palsy and diabetes
+
+===== SLIDE 26 =====
+Figure 4.27 Injecting Stem Cells Into a Damaged Brain
+Left
+: Stem cells are injected via syringe into a damaged area of the brain, where they hopefully replace the functions of damaged neurons.
+Right
+: Stem cells of a mouse are divided under an electron microscope.
+Garrett, Brain & Behavior, 7e. © 2027 Sage Publishing.
+26
+(Source: Valery
+Brozhinsky
+/
+iStockPhoto
+; dpa picture alliance/Alamy Stock Photo)
+
+===== SLIDE 27 =====
+27
