@@ -11,3 +11,6 @@ __pycache__/
 
 # macOS
 .DS_Store
+
+# local render check, regenerated on demand
+_preview.html

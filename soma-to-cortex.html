@@ -275,6 +275,33 @@ select{
 .fixrow .h{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:3px}
 .fixrow .v{font-size:14.5px}
 
+
+/* ---------- anatomy diagrams ---------- */
+.diafig{margin:0 0 6px;padding:0}
+.dia{display:block;width:100%;max-width:100%;height:auto;color:var(--ink)}
+.dia .art{pointer-events:none}
+.dia .art .body{fill:none;stroke:currentColor;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.dia .art .fill{fill:var(--surface-2);stroke:currentColor;stroke-width:2}
+.dia .art .thin{fill:none;stroke:currentColor;stroke-width:1.4;opacity:.5}
+.dia .art .land{fill:none;stroke:var(--accent);stroke-width:3.5;stroke-linecap:round}
+.dia .art .strip{fill:none;stroke:var(--inhibit);stroke-width:17;stroke-linecap:round;opacity:.3}
+.dia .art .pin{fill:var(--accent);stroke:none}
+.dia .art .pinnum{fill:var(--surface);font-size:11px;font-weight:700;text-anchor:middle}
+.dia .reg > *{fill:transparent;stroke:none;transition:fill .15s,stroke .15s}
+.dia .reg.area > *{fill:var(--surface);stroke:currentColor;stroke-width:2}
+.dia .reg{cursor:default}
+.dia.quiz .reg{cursor:pointer}
+.dia.quiz .reg:hover > *{fill:var(--accent-soft);stroke:var(--accent);stroke-width:2}
+.dia .reg.hi > *{fill:var(--excite-soft);stroke:var(--excite);stroke-width:3}
+.dia .reg.ok > *{fill:var(--good-soft);stroke:var(--good);stroke-width:3}
+.dia .reg.no > *{fill:var(--excite-soft);stroke:var(--excite);stroke-width:3}
+.dia .labels text{fill:currentColor;font-family:var(--sans);font-size:13px}
+.dia .labels .lead{stroke:currentColor;stroke-width:1;opacity:.45}
+.dia .inlab{fill:currentColor;font-family:var(--sans);font-size:13.5px;font-weight:600;text-anchor:middle}
+.dialegend{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:5px 16px;margin:10px 0 0;padding:0;list-style:none;font-size:14px}
+.dialegend li{display:flex;gap:8px;align-items:baseline}
+.dialegend b{font-family:var(--mono);font-size:11px;color:var(--accent);min-width:14px}
+figcaption{font-size:13.5px;color:var(--muted);margin-top:8px}
 @media (max-width:860px){
   .shell{grid-template-columns:1fr}
   .rail{
@@ -646,7 +673,14 @@ const T = [
 ["vaccines","Antidrug vaccines","Molecules that attach to the drug and stimulate the immune system to make antibodies that degrade it. They do not reduce craving, and none had reached market as of 2025.",5,"ReadOwn5",2],
 ["comt","COMT Met158 allele","A gene variant that predisposes people to late-onset alcoholism.",5,"ReadOwn5",2],
 ["p300","P300","An evoked potential component that is diminished in alcoholics, with an estimated heritability of 64%.",5,"ReadOwn5",2],
-["methylation","Methylation","The attachment of a methyl group to DNA, which suppresses a gene’s activity. A study of smokers found more than 7,000 genes whose functioning had been modified this way.",5,"ReadOwn5",2]
+["methylation","Methylation","The attachment of a methyl group to DNA, which suppresses a gene’s activity. A study of smokers found more than 7,000 genes whose functioning had been modified this way.",5,"ReadOwn5",2],
+["frontallobe","Frontal lobe","The area of each cerebral hemisphere anterior to the central sulcus and superior to the lateral fissure.",3,"Lobes",1],
+["parietallobe","Parietal lobe","The part of each cerebral hemisphere located above the lateral fissure and between the central sulcus and the occipital lobe; it contains the somatosensory cortex and visual association areas.",3,"Lobes",1],
+["temporallobe","Temporal lobe","The part of each cerebral hemisphere ventral to the lateral fissure; it contains the auditory cortex, visual and auditory association areas, Wernicke’s area, and structures involved in learning and memory.",3,"Lobes",1],
+["occipitallobe","Occipital lobe","The most posterior part of each cerebral hemisphere and the location of the visual cortex.",3,"Lobes",1],
+["centralsulcus","Central sulcus","The sulcus dividing the frontal lobe from the parietal lobe. The precentral gyrus lies immediately in front of it and the postcentral gyrus immediately behind it.",3,"Cortex",1],
+["lateralfissure","Lateral fissure","The fissure that separates the temporal lobe from the frontal and parietal lobes.",3,"Cortex",1],
+["brainstem","Brain stem","The midbrain, pons and medulla together — the stalk connecting the cerebral hemispheres to the spinal cord.",3,"Hindbrain",1]
 ].map(function(r){return {id:r[0],term:r[1],def:r[2],ch:r[3],sec:r[4],tier:r[5],alt:r[6]||null,flag:r[7]||null};});
 
 const BY_ID = {}; T.forEach(function(t){BY_ID[t.id]=t;});
@@ -1156,6 +1190,132 @@ const TABLES = [
 
 ];
 
+
+
+/* ===================== ANATOMY DIAGRAMS =====================
+   Hand-drawn SVG. Each part's `hit` shape carries data-p = a term id,
+   so scoring flows into the same weak-spot list as every other drill. */
+const DIA = {
+ neuron:{
+  label:"Parts of a neuron", view:"0 0 790 300",
+  aria:"A multipolar motor neuron: dendrites and cell body on the left, axon wrapped in myelin segments running right, axon terminals at the far right.",
+  cap:"A multipolar motor neuron, drawn in the arrangement of Fig. 2.3. Information flows left to right: in at the dendrites, out at the terminals.",
+  art:`
+   <path class="body" d="M124,124 C96,104 70,98 40,90"/><path class="body" d="M70,99 C62,80 58,68 52,52"/>
+   <path class="body" d="M120,150 C90,146 64,142 32,136"/><path class="body" d="M64,142 C54,156 46,166 34,178"/>
+   <path class="body" d="M126,176 C100,194 74,206 46,216"/>
+   <path class="body" d="M152,116 C144,88 138,68 130,44"/><path class="body" d="M141,78 C156,66 168,58 182,50"/>
+   <ellipse class="fill" cx="170" cy="150" rx="46" ry="38"/>
+   <circle class="fill" cx="172" cy="148" r="15"/>
+   <path class="fill" d="M212,132 L252,141 L252,159 L212,168 Z"/>
+   <line class="body" x1="250" y1="150" x2="662" y2="150"/>
+   <rect class="fill" x="268" y="131" width="72" height="38" rx="17"/>
+   <rect class="fill" x="356" y="131" width="72" height="38" rx="17"/>
+   <rect class="fill" x="444" y="131" width="72" height="38" rx="17"/>
+   <rect class="fill" x="532" y="131" width="72" height="38" rx="17"/>
+   <path class="body" d="M662,150 C678,150 690,132 702,120"/><circle class="fill" cx="708" cy="114" r="9"/>
+   <path class="body" d="M662,150 L700,150"/><circle class="fill" cx="708" cy="150" r="9"/>
+   <path class="body" d="M662,150 C678,150 690,170 702,182"/><circle class="fill" cx="708" cy="188" r="9"/>`,
+  parts:[
+   {id:"dendrite",name:"Dendrites",hit:'<ellipse cx="92" cy="146" rx="76" ry="92"/>',
+    lab:{x:30,y:256,a:"start",lx1:56,ly1:248,lx2:84,ly2:206}},
+   {id:"soma",name:"Cell body (soma)",hit:'<ellipse cx="170" cy="150" rx="47" ry="39"/>',
+    lab:{x:166,y:272,a:"middle",lx1:166,ly1:262,lx2:170,ly2:191}},
+   {id:"nucleus-cell",name:"Nucleus",hit:'<circle cx="172" cy="148" r="17"/>',
+    lab:{x:222,y:42,a:"start",lx1:220,ly1:50,lx2:184,ly2:138}},
+   {id:"hillock",name:"Axon hillock",hit:'<rect x="210" y="126" width="46" height="48"/>',
+    lab:{x:268,y:92,a:"start",lx1:274,ly1:99,lx2:242,ly2:132}},
+   {id:"myelin",name:"Myelin sheath",hit:'<rect x="356" y="128" width="72" height="44" rx="18"/>',
+    lab:{x:392,y:74,a:"middle",lx1:392,ly1:82,lx2:392,ly2:127}},
+   {id:"ranvier",name:"Node of Ranvier",hit:'<circle cx="436" cy="150" r="17"/>',
+    lab:{x:436,y:264,a:"middle",lx1:436,ly1:254,lx2:436,ly2:168}},
+   {id:"axon",name:"Axon",hit:'<rect x="606" y="136" width="54" height="28"/><rect x="252" y="136" width="16" height="28"/>',
+    lab:{x:630,y:88,a:"middle",lx1:630,ly1:96,lx2:632,ly2:139}},
+   {id:"terminal",name:"Axon terminals",hit:'<ellipse cx="700" cy="150" rx="62" ry="58"/>',
+    lab:{x:706,y:266,a:"middle",lx1:706,ly1:256,lx2:704,ly2:200}}
+  ]},
+
+ brain:{
+  label:"Lobes of the brain", view:"-40 -34 810 530",
+  aria:"Lateral view of the left cerebral hemisphere, facing left: frontal lobe at the front, parietal above and behind it, temporal below the lateral fissure, occipital at the back, with the cerebellum and brain stem beneath.",
+  cap:"Lateral view of the left hemisphere, facing left — the arrangement of Fig. 3.8. The teal lines are the two landmarks every lobe boundary is defined from.",
+  art:``,
+  artTop:`
+   <path class="strip" d="M280,74 L218,202"/>
+   <path class="strip" d="M320,74 L256,206"/>
+   <path class="land" d="M300,66 L236,208"/>
+   <path class="land" d="M160,238 L236,209 L404,212"/>
+   <path class="thin" d="M456,306 L588,322"/><path class="thin" d="M448,330 L590,344"/>
+   <path class="thin" d="M452,354 L582,366"/><path class="thin" d="M464,378 L566,386"/>
+   <circle class="pin" cx="249" cy="138" r="11"/><text class="pinnum" x="249" y="142">1</text>
+   <circle class="pin" cx="288" cy="140" r="11"/><text class="pinnum" x="288" y="144">2</text>
+   <circle class="pin" cx="190" cy="212" r="11"/><text class="pinnum" x="190" y="216">3</text>
+   <circle class="pin" cx="300" cy="238" r="11"/><text class="pinnum" x="300" y="242">4</text>
+   <circle class="pin" cx="382" cy="246" r="11"/><text class="pinnum" x="382" y="250">5</text>
+   <circle class="pin" cx="538" cy="228" r="11"/><text class="pinnum" x="538" y="232">6</text>`,
+  parts:[
+   {id:"frontallobe",name:"Frontal lobe",cls:"area",
+    hit:'<path d="M300,66 C248,60 158,78 108,132 C76,166 66,200 80,228 C90,250 114,262 142,256 L160,238 L236,208 Z"/>',
+    inlab:{x:142,y:170}},
+   {id:"parietallobe",name:"Parietal lobe",cls:"area",
+    hit:'<path d="M300,66 C360,62 442,74 488,110 C514,130 526,150 520,166 L404,212 L236,208 Z"/>',
+    inlab:{x:394,y:128}},
+   {id:"temporallobe",name:"Temporal lobe",cls:"area",
+    hit:'<path d="M160,238 L236,209 L404,212 L440,268 C420,300 380,322 330,326 C268,330 214,312 182,282 C166,266 156,250 160,238 Z"/>',
+    inlab:{x:276,y:292}},
+   {id:"occipitallobe",name:"Occipital lobe",cls:"area",
+    hit:'<path d="M520,166 C548,180 568,202 568,228 C568,254 546,272 518,276 L440,268 L404,212 Z"/>',
+    inlab:{x:474,y:246}},
+   {id:"cerebellum",name:"Cerebellum",cls:"area",
+    hit:'<path d="M452,290 C490,272 546,278 574,308 C598,336 590,376 558,394 C520,414 470,404 448,376 C430,352 430,306 452,290 Z"/>',
+    inlab:{x:512,y:348}},
+   {id:"brainstem",name:"Brain stem",cls:"area",
+    hit:'<path d="M356,316 L406,322 C416,356 414,402 402,440 L362,440 C350,400 350,352 356,316 Z"/>',
+    lab:{x:300,y:424,a:"end",lx1:308,ly1:419,lx2:354,ly2:404}},
+   {id:"centralsulcus",name:"Central sulcus",
+    hit:'<path d="M300,66 L236,208" style="stroke-width:18;fill:none"/>',
+    lab:{x:296,y:-12,a:"end",lx1:300,ly1:-6,lx2:300,ly2:60}},
+   {id:"lateralfissure",name:"Lateral fissure",
+    hit:'<path d="M160,238 L236,209 L404,212" style="stroke-width:18;fill:none"/>',
+    lab:{x:88,y:300,a:"end",lx1:94,ly1:294,lx2:158,ly2:244}},
+   {id:"m1",name:"Primary motor cortex",num:1,hit:'<circle cx="249" cy="138" r="21"/>'},
+   {id:"s1",name:"Primary somatosensory cortex",num:2,hit:'<circle cx="288" cy="140" r="21"/>'},
+   {id:"broca",name:"Broca’s area",num:3,hit:'<circle cx="190" cy="212" r="21"/>'},
+   {id:"a1",name:"Primary auditory cortex",num:4,hit:'<circle cx="300" cy="238" r="21"/>'},
+   {id:"wernicke",name:"Wernicke’s area",num:5,hit:'<circle cx="382" cy="246" r="21"/>'},
+   {id:"v1",name:"Primary visual cortex",num:6,hit:'<circle cx="538" cy="228" r="21"/>'}
+  ]}
+};
+
+function diaSVG(key,o){
+  o=o||{}; var d=DIA[key], hits="", labels="";
+  d.parts.forEach(function(p){
+    var cls="reg"+(p.cls?" "+p.cls:"");
+    if(o.hi===p.id) cls+=" hi";
+    if(o.marks&&o.marks[p.id]) cls+=" "+o.marks[p.id];
+    hits+='<g class="'+cls+'" data-p="'+p.id+'">'+p.hit+'</g>';
+  });
+  if(!o.quiz){
+    d.parts.forEach(function(p){
+      if(p.inlab) labels+='<text class="inlab" x="'+p.inlab.x+'" y="'+p.inlab.y+'">'+esc(p.name)+'</text>';
+      else if(p.lab){ var L=p.lab;
+        labels+='<line class="lead" x1="'+L.lx1+'" y1="'+L.ly1+'" x2="'+L.lx2+'" y2="'+L.ly2+'"/>'+
+                '<text x="'+L.x+'" y="'+L.y+'" text-anchor="'+(L.a||"middle")+'">'+esc(p.name)+'</text>';
+      }
+    });
+  }
+  return '<figure class="diafig"><svg class="dia'+(o.quiz?" quiz":"")+'" viewBox="'+d.view+'" role="img" aria-label="'+esc(d.aria)+'">'+
+         '<g class="art">'+d.art+'</g>'+hits+
+         (d.artTop?'<g class="art">'+d.artTop+'</g>':'')+'<g class="labels">'+labels+'</g></svg>'+
+         (o.cap?'<figcaption>'+esc(d.cap)+'</figcaption>':'')+'</figure>';
+}
+function diaLegend(key){
+  var nums=DIA[key].parts.filter(function(p){return p.num;});
+  if(!nums.length) return "";
+  return '<ul class="dialegend">'+nums.map(function(p){
+    return '<li><b>'+p.num+'</b><span>'+esc(p.name)+'</span></li>';
+  }).join("")+'</ul>';
+}
 /* ===================== 14-DAY PLAN ===================== */
 const EXAM = new Date(2026,9,6); // 6 Oct 2026
 const PLAN = [
@@ -1203,6 +1363,7 @@ var VIEWS=[
  {id:"ch4",label:"Chapter 4",group:"Notes"},
  {id:"ch5",label:"Chapter 5",group:"Notes"},
  {id:"conf",label:"Confusions",group:"Notes"},
+ {id:"dia",label:"Diagrams",group:"Notes"},
  {id:"tables",label:"Tables",group:"Reference"},
  {id:"fixes",label:"Corrections",group:"Reference"}
 ];
@@ -1336,6 +1497,21 @@ function newQuestion(){
     var pick=shuffle(pool.slice()).slice(0,Math.min(5,pool.length));
     drill.q={items:pick,defs:shuffle(pick.slice())};
     drill.matchState={sel:null,solved:{},missed:{}};
+  } else if(drill.mode==="label"){
+    var key = drill.pool==="dia-neuron"?"neuron" : drill.pool==="dia-brain"?"brain" : (Math.random()<0.5?"neuron":"brain");
+    var dd=DIA[key];
+    var bag=[];
+    dd.parts.forEach(function(p){
+      var w=1+(S.missed[p.id]||0)*3+((S.seen[p.id]||0)===0?1:0);
+      for(var i=0;i<w;i++) bag.push(p);
+    });
+    var part=bag[Math.floor(Math.random()*bag.length)];
+    var dir=Math.random()<0.55?"point":"name", opts=null;
+    if(dir==="name"){
+      var others=shuffle(dd.parts.filter(function(x){return x.id!==part.id;})).slice(0,3);
+      opts=shuffle([part].concat(others));
+    }
+    drill.q={dia:key,part:part,dir:dir,opts:opts,marks:{}};
   } else if(drill.mode==="conf"){
     var c=CONF[Math.floor(Math.random()*CONF.length)];
     var si=Math.floor(Math.random()*c.sides.length);
@@ -1356,12 +1532,20 @@ function newQuestion(){
 }
 function drillBody(){
   var secs={}; T.forEach(function(t){secs[t.ch+" · "+t.sec]=t.sec;});
-  var opts='<option value="all">Everything</option><option value="ch2">Chapter 2 only</option><option value="ch3">Chapter 3 only</option><option value="weak">My weak spots</option>';
-  Object.keys(secs).sort().forEach(function(k){
-    opts+='<option value="'+secs[k]+'"'+(drill.pool===secs[k]?" selected":"")+'>'+esc(k)+'</option>';
-  });
+  var opts;
+  if(drill.mode==="label"){
+    opts=[["dia-both","Both diagrams"],["dia-neuron","Neuron only"],["dia-brain","Brain lobes only"]].map(function(o){
+      return '<option value="'+o[0]+'"'+(drill.pool===o[0]?" selected":"")+'>'+o[1]+'</option>';
+    }).join("");
+  } else {
+    opts='<option value="all">Everything</option><option value="ch2">Chapter 2 only</option><option value="ch3">Chapter 3 only</option>'+
+         '<option value="ch4">Chapter 4 only</option><option value="ch5">Chapter 5 only</option><option value="weak">My weak spots</option>';
+    Object.keys(secs).sort().forEach(function(k){
+      opts+='<option value="'+secs[k]+'"'+(drill.pool===secs[k]?" selected":"")+'>'+esc(k)+'</option>';
+    });
+  }
   var h='<div class="modes">'+
-    [["mc","Multiple choice"],["fib","Fill in the blank"],["match","Matching"],["conf","Confusion pairs"]].map(function(m){
+    [["mc","Multiple choice"],["fib","Fill in the blank"],["match","Matching"],["conf","Confusion pairs"],["label","Label the diagram"]].map(function(m){
       return '<button class="mode" data-m="'+m[0]+'" aria-pressed="'+(drill.mode===m[0])+'">'+m[1]+'</button>';
     }).join("")+'</div>'+
     '<div class="pool"><label for="poolsel">Pool</label><select id="poolsel">'+opts+'</select></div>';
@@ -1389,6 +1573,32 @@ function drillBody(){
       h+='<button class="mitem'+st+'" data-d="'+t.id+'"'+(drill.matchState.solved[t.id]?" disabled":"")+'>'+esc(t.def.length>150?t.def.slice(0,147)+"…":t.def)+'</button>';
     });
     h+='</div></div>';
+  } else if(drill.mode==="label"){
+    var key = drill.pool==="dia-neuron"?"neuron" : drill.pool==="dia-brain"?"brain" : (Math.random()<0.5?"neuron":"brain");
+    var dd=DIA[key];
+    var bag=[];
+    dd.parts.forEach(function(p){
+      var w=1+(S.missed[p.id]||0)*3+((S.seen[p.id]||0)===0?1:0);
+      for(var i=0;i<w;i++) bag.push(p);
+    });
+    var part=bag[Math.floor(Math.random()*bag.length)];
+    var dir=Math.random()<0.55?"point":"name", opts=null;
+    if(dir==="name"){
+      var others=shuffle(dd.parts.filter(function(x){return x.id!==part.id;})).slice(0,3);
+      opts=shuffle([part].concat(others));
+    }
+    drill.q={dia:key,part:part,dir:dir,opts:opts,marks:{}};
+  } else if(drill.mode==="label"){
+    if(drill.q.dir==="point"){
+      h+='<div class="prompt"><span class="q">Click it on the diagram</span>'+esc(drill.q.part.name)+'</div>'+
+         diaSVG(drill.q.dia,{quiz:true,marks:drill.q.marks});
+    } else {
+      h+='<div class="prompt"><span class="q">What is highlighted?</span></div>'+
+         diaSVG(drill.q.dia,{quiz:true,hi:(drill.answered?null:drill.q.part.id),marks:drill.q.marks})+
+         '<div class="opts">';
+      drill.q.opts.forEach(function(o,i){ h+='<button class="opt" data-l="'+i+'">'+esc(o.name)+'</button>'; });
+      h+='</div>';
+    }
   } else if(drill.mode==="conf"){
     var c=drill.q.conf;
     h+='<div class="prompt"><span class="q">'+esc(c.title)+'</span>'+drill.q.clue+'</div><div class="opts">';
@@ -1403,7 +1613,13 @@ function drillBody(){
 }
 function wireDrill(){
   document.querySelectorAll(".mode").forEach(function(b){
-    b.onclick=function(){ drill.mode=b.dataset.m; drill.q=null; renderMain(); };
+    b.onclick=function(){
+      var wasDia=drill.pool.indexOf("dia-")===0;
+      drill.mode=b.dataset.m;
+      if(drill.mode==="label" && !wasDia) drill.pool="dia-both";
+      if(drill.mode!=="label" && wasDia) drill.pool="all";
+      drill.q=null; renderMain();
+    };
   });
   var ps=document.getElementById("poolsel");
   if(ps) ps.onchange=function(){ drill.pool=ps.value; drill.q=null; renderMain(); };
@@ -1461,6 +1677,39 @@ function wireDrill(){
       v.innerHTML='<div class="verdict ok">All five matched.</div>';
     }
   }
+  if(drill.mode==="label"&&drill.q){
+    var q=drill.q;
+    if(q.dir==="point"){
+      document.querySelectorAll(".dia.quiz .reg").forEach(function(g){
+        g.onclick=function(){
+          if(drill.answered) return; drill.answered=true;
+          var picked=g.dataset.p, ok=(picked===q.part.id);
+          mark(q.part.id,ok);
+          q.marks[q.part.id]="ok";
+          if(!ok) q.marks[picked]="no";
+          renderMain(); renderNav();
+          var vv=document.getElementById("verdict");
+          if(vv) vv.innerHTML='<div class="verdict '+(ok?"ok":"no")+'">'+(ok?"Correct.":"Not that one — the green outline is "+esc(q.part.name)+".")+
+            '<span class="ans">'+esc((BY_ID[q.part.id]||{}).def||"")+'</span></div>';
+        };
+      });
+    } else {
+      document.querySelectorAll("[data-l]").forEach(function(b){
+        b.onclick=function(){
+          if(drill.answered) return; drill.answered=true;
+          var chosen=q.opts[+b.dataset.l], ok=chosen.id===q.part.id;
+          mark(q.part.id,ok);
+          document.querySelectorAll("[data-l]").forEach(function(x,i){
+            x.disabled=true;
+            if(q.opts[i].id===q.part.id) x.classList.add("right"); else if(x===b) x.classList.add("wrong");
+          });
+          v.innerHTML='<div class="verdict '+(ok?"ok":"no")+'">'+(ok?"Correct.":"Not quite.")+
+            '<span class="ans"><b>'+esc(q.part.name)+'</b> — '+esc((BY_ID[q.part.id]||{}).def||"")+'</span></div>';
+          renderNav();
+        };
+      });
+    }
+  }
   if(drill.mode==="conf"&&drill.q){
     document.querySelectorAll("[data-c]").forEach(function(b){
       b.onclick=function(){
@@ -1502,7 +1751,7 @@ function renderMain(){
   }
   else if(view==="drill"){
     h=head("Retrieval practice","Drill",
-      "Four formats. Three of them are the three formats on your exam; the fourth drills the pairs that blur. Questions are weighted toward what you have missed before.")+
+      "Five formats. Three are the three formats on your exam, one drills the pairs that blur, and one makes you label a diagram. Questions are weighted toward what you have missed before.")+
       '<div class="wrap">'+drillBody()+'</div>';
   }
   else if(view==="weak"){
@@ -1543,6 +1792,15 @@ function renderMain(){
     h=head("Chapter 5 · Drugs, Addiction and Reward","Every blank, filled",
       "The biggest chapter of the four, and the most matching-shaped: drug → mechanism, drug → class, medication → action. Blanks your professor filled in verbally are marked with an <span class='chip flagged'>check this</span> tag.")+
       '<div class="wrap">'+renderOutline(OUT5)+'</div>';
+  }
+  else if(view==="dia"){
+    h=head("Identify it on an image","Diagrams",
+      "The two you have to be able to label. Study them here, then switch to the drill’s <b>Label the diagram</b> mode — it asks you both directions: click the part it names, and name the part it highlights.")+
+      '<div class="wrap wide">'+
+      '<section class="sec"><h3>Parts of a neuron <span class="src">Fig. 2.3 · Ch 2 slide 4</span></h3>'+diaSVG("neuron",{cap:1})+'</section>'+
+      '<section class="sec"><h3>Lobes of the brain <span class="src">Fig. 3.8 · Ch 3 slide 13</span></h3>'+diaSVG("brain",{cap:1})+diaLegend("brain")+
+      '<div class="callout acc"><b>Orientation:</b> this is the <b>left</b> hemisphere seen from the side, facing <b>left</b>. Anterior is left, posterior is right, dorsal is up. If your exam image faces the other way, every lobe flips horizontally — check which pole the frontal lobe is at before you answer.</div>'+
+      '</section></div>';
   }
   else if(view==="conf"){
     h=head("Twenty-three pairs that blur","Confusions",
